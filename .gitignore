@@ -3,6 +3,8 @@
 /.settings/
 /bin/
 /run/
+/.idea/
+/out/
 .classpath
 build.bat
 gen.bat
@@ -11,3 +13,6 @@ build1.gradle
 Minecraft_Client.launch
 Minecraft_Server.launch
 build-curse.bat
+/TaylorCommands.iml
+/TaylorCommands.ipr
+/TaylorCommands.iws
