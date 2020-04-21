@@ -1,6 +1,7 @@
 package ca.samueltaylor.taylor_commands.commands;
 
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.HomePoint;
 import ca.samueltaylor.taylor_commands.helper.Permission;
@@ -31,21 +32,16 @@ public class CommandSetHome {
         int homes = HomePoint.getHomecounts(player);
         ChatMessage chat = new ChatMessage(player);
 
-        if (homes < 5) {
+        if (homes <= TaylorCommands.config.getInt("maxHomes", 5)) {
             HomePoint home = HomePoint.getHome(player, args);
             if (home == null) {
                 HomePoint.setHome(player, args);
-//                player.sendMessage(new TranslatableText("commands.sethome.done", HomePoint.getHome(player, args).homename), false);
                 chat.send("Home " + HomePoint.getHome(player, args).homename + " set!");
             } else {
-//                player.sendMessage(new TranslatableText("commands.sethome.failure", args), false);
-//                player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
                 chat.send("Could not set home, it already exists!");
                 chat.send("Your homes: " + HomePoint.gethomePoints(player));
             }
         } else {
-//            player.sendMessage(new TranslatableText("commands.sethome.maximum"), false);
-//            player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
             chat.send("You have the maximum number of homes!");
             chat.send("Your homes: " + HomePoint.gethomePoints(player));
         }
@@ -57,7 +53,7 @@ public class CommandSetHome {
         int homes = HomePoint.getHomecounts(player);
         ChatMessage chat = new ChatMessage(player);
 
-        if (homes < 5) {
+        if (homes <= TaylorCommands.config.getInt("maxHomes", 5)) {
             HomePoint home = HomePoint.getHome(player, "home");
             if (home == null) {
                 HomePoint.setHome(player, "home");

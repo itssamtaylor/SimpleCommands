@@ -4,6 +4,7 @@ package ca.samueltaylor.taylor_commands.helper;
 import ca.samueltaylor.taylor_commands.TaylorCommands;
 import com.google.gson.*;
 import net.fabricmc.loader.api.FabricLoader;
+import org.apache.logging.log4j.Level;
 
 import java.io.*;
 import java.util.Map;
@@ -30,8 +31,6 @@ public class Config {
             return;
         }else {
             write(properties);
-
-               
         }
     }
     
@@ -60,14 +59,14 @@ public class Config {
                     }else if (property.getValue() instanceof String) {
                         config.addProperty(property.getKey(), (String) property.getValue());
                     }else {
-                        TaylorCommands.LOGGER.error("Unable to parse json config property! File: " + name + ".json with Property: " + property.getKey());
+                        TaylorCommands.log(Level.ERROR, "Unable to parse json config property! File: " + name + ".json with Property: " + property.getKey());
                         continue;
                     }
                 }
 
                 this.saveConfig(writer);
             } catch (IOException e) {
-                TaylorCommands.LOGGER.fatal("You done borked something with your config", e);
+                TaylorCommands.log(Level.FATAL, "You done borked something with your config", e);
             }
         }
     }
@@ -114,6 +113,10 @@ public class Config {
      */
     public int getInt(String key) {
         return this.config.has(key) ? this.config.get(key).getAsInt() : 0;
+    }
+
+    public int getInt(String key, int defaultValue) {
+        return this.config.has(key) ? this.config.get(key).getAsInt() : defaultValue;
     }
 
     /**
@@ -166,16 +169,16 @@ public class Config {
      */
     private void loadConfig() {
         if(!configFile.exists()) {
-            TaylorCommands.LOGGER.error("Unable to load config file " + name + ".json, File not found!");
+            TaylorCommands.log(Level.ERROR, "Unable to load config file " + name + ".json, File not found!");
             return;
         }
 
         try {
-            TaylorCommands.LOGGER.info("Loading config file " + name + ".json");
+            TaylorCommands.log(Level.INFO, "Loading config file " + name + ".json");
             JsonParser parser = new JsonParser();
             config = parser.parse(new FileReader(configFile)).getAsJsonObject();
         } catch (FileNotFoundException e) {
-            TaylorCommands.LOGGER.fatal("You done borked something with your config", e);
+            TaylorCommands.log(Level.FATAL, "You done borked something with your config", e);
         }
     }
 
@@ -185,7 +188,7 @@ public class Config {
      * @param writer - The writer to to write with
      */
     private void saveConfig(FileWriter writer) {
-        TaylorCommands.LOGGER.info("Creating config file " + name + ".json");
+        TaylorCommands.log(Level.INFO, "Creating config file " + name + ".json");
         gson.toJson(config, writer);
     }
 
@@ -196,10 +199,10 @@ public class Config {
     public void saveConfig() {
         if(!configFile.exists()) {
             try {
-                TaylorCommands.LOGGER.info("Creating config file " + name + ".json");
+                TaylorCommands.log(Level.INFO, "Creating config file " + name + ".json");
                 gson.toJson(config, new FileWriter(configFile));
             } catch (IOException e) {
-                TaylorCommands.LOGGER.fatal("You done borked something with your config", e);
+                TaylorCommands.log(Level.FATAL, "You done borked something with your config", e);
             }
         }
     }
