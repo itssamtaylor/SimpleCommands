@@ -61,14 +61,11 @@ public class CommandHome {
 
         if (home != null) {
             Teleport.warp(player, home.location, false);
-//            player.sendMessage(new TranslatableText("commands.home.done", home.homename), false);
             chat.send("Warped home!");
         } else {
             if (!HomePoint.gethomePoints(player).equals("")) {
-//                player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
                 chat.send("Your homes: " + HomePoint.gethomePoints(player));
             } else {
-//                player.sendMessage(new TranslatableText("commands.home.failure"), false);
                 chat.send("Home not set!");
             }
         }

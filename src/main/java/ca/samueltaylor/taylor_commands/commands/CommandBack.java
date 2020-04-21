@@ -27,10 +27,8 @@ public class CommandBack {
         ChatMessage chat = new ChatMessage(player);
 
         if (Teleport.goBack(player)) {
-//            player.sendMessage(new TranslatableText("commands.back.done"), false);
             chat.send("Warped to previous location!");
         } else {
-//            player.sendMessage(new TranslatableText("commands.back.failure"), false);
             chat.send("You have not warped anywhere!");
         }
         return 1;

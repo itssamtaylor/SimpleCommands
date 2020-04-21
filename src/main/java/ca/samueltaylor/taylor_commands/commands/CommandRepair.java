@@ -35,11 +35,8 @@ public class CommandRepair {
         ChatMessage chat = new ChatMessage(player);
 
         if (item.isDamaged()) {
-            item.setDamage(0);
-//            player.sendMessage(new TranslatableText("commands.repair.done"), false);
             chat.send("Item repaired!");
         } else {
-//            player.sendMessage(new TranslatableText("commands.repair.failure"), false);
             chat.send("Item is not damaged!");
         }
         return Command.SINGLE_SUCCESS;

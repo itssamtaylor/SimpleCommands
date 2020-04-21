@@ -34,14 +34,11 @@ public class CommandDelHome {
         ChatMessage chat = new ChatMessage(player);
 
         if (warpPoint == null) {
-//            player.sendMessage(new TranslatableText("commands.delhome.failure", args), false);
-//            player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
             chat.send("Home " + args + " does not exsits!");
             chat.send("Your homes: " + HomePoint.gethomePoints(player));
 
         } else {
             HomePoint.delHomePoint(player, args);
-//            player.sendMessage(new TranslatableText("commands.delhome.done", args), false);
             chat.send("Home " + args + " is deleted!");
         }
         return 1;

@@ -39,11 +39,9 @@ public class CommandDelWarp {
             ChatMessage chat = new ChatMessage(player);
 
             if (warpPoint == null) {
-//                player.sendMessage(new TranslatableText("commands.delwarp.failure", warpPointName), false);
                 chat.send("Warp " + args + " does not exist!");
             } else {
                 WarpPoint.delWarpPoint(args);
-//                player.sendMessage(new TranslatableText("commands.delwarp.done", warpPointName), false);
                 chat.send("Warp " + args + " is deleted!");
             }
         }

@@ -24,7 +24,6 @@ public class CommandSetSpawn {
         ServerPlayerEntity player = context.getSource().getPlayer();
         ChatMessage chat = new ChatMessage(player);
         context.getSource().getWorld().setSpawnPos(player.getBlockPos().up());
-//        player.sendMessage(new TranslatableText("commands.setspawn.done"), false);
         chat.send("Spawn set!");
         return 1;
     }

@@ -35,7 +35,6 @@ public class CommandTpDeny {
         ChatMessage chat = new ChatMessage(player);
 
         if (TeleportRequests.pending(player.getUuid())) {
-//            player.sendMessage(new TranslatableText("commands.tpa.youdenied"), false);
             chat.send("You denied the request");
 
             List<ServerPlayerEntity> playerlist = context.getSource().getMinecraftServer().getPlayerManager().getPlayerList();
@@ -47,7 +46,6 @@ public class CommandTpDeny {
             TeleportRequests.remove(player.getUuid());
 
         } else {
-//            player.sendMessage(new TranslatableText("commands.tpa.nonetodeny"), false);
             chat.send("No longer pending");
         }
         return 1;

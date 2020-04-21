@@ -32,7 +32,6 @@ public class CommandWarp {
         ChatMessage chat = new ChatMessage(player);
 
         if (Objects.equals(par2ArrayOfStr, "")) {
-//            player.sendMessage(new LiteralText("WarpPointNames: " + WarpPoint.getWarpPoints()), false);
             chat.send("Warp points: " + WarpPoint.getWarpPoints());
         } else {
             WarpPoint warpPoint = WarpPoint.getWarpPoint(par2ArrayOfStr);
@@ -40,11 +39,8 @@ public class CommandWarp {
             if (warpPoint != null) {
                 Location loc = WarpPoint.getWarpPoint(par2ArrayOfStr).location;
                 Teleport.warp(player, loc, false);
-//                player.sendMessage(new TranslatableText("commands.warp.done", par2ArrayOfStr), false);
                 chat.send("Warped to " + par2ArrayOfStr);
             } else {
-//                player.sendMessage(new TranslatableText("commands.warp.failure", par2ArrayOfStr), false);
-//                player.sendMessage(new LiteralText("WarpPointNames: " + WarpPoint.getWarpPoints()), false);
                 chat.send("Warp " + par2ArrayOfStr + " does not exist!");
                 chat.send("Warp points: " + WarpPoint.getWarpPoints());
             }

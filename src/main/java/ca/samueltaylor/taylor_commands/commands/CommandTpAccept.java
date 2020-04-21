@@ -48,21 +48,17 @@ public class CommandTpAccept {
                     playerFound = true;
                     ServerPlayerEntity teleporter = playerlist.get(i);
                     ChatMessage chatTP = new ChatMessage(teleporter);
-//                    teleporter.sendMessage(new TranslatableText("commands.tpa.gotaccepted"), false);
-//                    player.sendMessage(new TranslatableText("commands.tpa.youaccepted"), false);
-                    chat.send("You accepted " + teleporter.getName() + "'s request!");
+                    chat.send("You accepted " + teleporter.getName().getString() + "'s request!");
                     chatTP.send("Your request was accepted!");
 
                     Teleport.warp(teleporter, new Location(player), true);
                 }
             }
             if (!playerFound) {
-//                player.sendMessage(new TranslatableText("commands.tpa.notonline"), false);
                 chat.send("They are no longer online");
             }
             TeleportRequests.remove(player.getUuid());
         } else {
-//            player.sendMessage(new TranslatableText("commands.tpa.nonetoaccept"), false);
             chat.send("No longer pending");
         }
         return 1;

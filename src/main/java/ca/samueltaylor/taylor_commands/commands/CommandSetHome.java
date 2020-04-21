@@ -61,18 +61,13 @@ public class CommandSetHome {
             HomePoint home = HomePoint.getHome(player, "home");
             if (home == null) {
                 HomePoint.setHome(player, "home");
-//                player.sendMessage(new TranslatableText("commands.sethome.done", HomePoint.getHome(player, "home").homename), false);
                 chat.send("Home " + HomePoint.getHome(player, "home").homename + " set!");
             } else {
-//                player.sendMessage(new TranslatableText("commands.sethome.failure", "home"), false);
-//                player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
                 chat.send("Could not set home, it already exists!");
                 chat.send("Your homes: " + HomePoint.gethomePoints(player));
 
             }
         } else {
-//            player.sendMessage(new TranslatableText("commands.sethome.maximum"), false);
-//            player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
             chat.send("You have the maximum number of homes!");
             chat.send("Your homes: " + HomePoint.gethomePoints(player));
         }

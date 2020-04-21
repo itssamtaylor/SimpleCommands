@@ -2,6 +2,8 @@ package ca.samueltaylor.taylor_commands.helper;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 
 public class ChatMessage {
     public final PlayerEntity player;
@@ -23,6 +25,6 @@ public class ChatMessage {
     }
 
     public void send(String message) {
-        this.player.sendMessage(new LiteralText(message), this.actionBar);
+        this.player.sendMessage(new TranslatableText(message), this.actionBar);
     }
 }

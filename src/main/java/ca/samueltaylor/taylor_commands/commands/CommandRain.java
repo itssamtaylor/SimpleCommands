@@ -31,7 +31,6 @@ public class CommandRain {
         //context.getSource().getWorld().getLevelProperties().setThunderTime(int_1);
         context.getSource().getWorld().getLevelProperties().setRaining(true);
         context.getSource().getWorld().getLevelProperties().setThundering(false);
-//        player.sendMessage(new TranslatableText("commands.rain.done"), false);
         chat.send("It's raining!");
         return 1;
 

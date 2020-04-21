@@ -30,7 +30,6 @@ public class CommandDay {
         ChatMessage chat = new ChatMessage(player);
 
         world.setTimeOfDay(2000);
-//		player.sendMessage(new TranslatableText("commands.day.done"), false);
         chat.send("It's day!");
         return Command.SINGLE_SUCCESS;
     }

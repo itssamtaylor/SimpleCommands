@@ -36,10 +36,8 @@ public class CommandSetWarp {
 
             if (warpPoint == null) {
                 WarpPoint.setWarpPoint(player, args);
-//                player.sendMessage(new TranslatableText("commands.setwarp.done", args), false);
                 chat.send("Warp " + args + " is set!");
             } else {
-//                player.sendMessage(new TranslatableText("commands.setwarp.failure", args), false);
                 chat.send("Warp " + args + " already exists!");
             }
         }

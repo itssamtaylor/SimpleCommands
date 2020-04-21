@@ -30,7 +30,6 @@ public class CommandSun {
         context.getSource().getWorld().getLevelProperties().setRainTime(0);
         context.getSource().getWorld().getLevelProperties().setRaining(false);
         context.getSource().getWorld().getLevelProperties().setThundering(false);
-//        player.sendMessage(new TranslatableText("commands.sun.done"), false);
         chat.send("It's sunny!");
         return 1;
 

@@ -34,16 +34,13 @@ public class CommandGod {
             if (!playerEntity.abilities.invulnerable) {
                 playerEntity.abilities.invulnerable = true;
                 playerEntity.sendAbilitiesUpdate();
-//                playerEntity.sendMessage(new TranslatableText("commands.god.enabled"), false);
                 chat.send("God mode enabled!");
             } else {
                 playerEntity.abilities.invulnerable = false;
                 playerEntity.sendAbilitiesUpdate();
-//                playerEntity.sendMessage(new TranslatableText("commands.god.disabled"), false);
                 chat.send("God mode disabled!");
             }
         } else {
-//            playerEntity.sendMessage(new TranslatableText("commands.god.error"), false);
             chat.send("God: An error occurred!");
         }
 
@@ -60,18 +57,15 @@ public class CommandGod {
             if (!requestedPlayer.abilities.invulnerable) {
                 requestedPlayer.abilities.invulnerable = true;
                 requestedPlayer.sendAbilitiesUpdate();
-//                requestedPlayer.sendMessage(new TranslatableText("commands.god.enabled"), false);
                 chatRP.send("God mode enabled!");
-                chatSP.send("God mode enabled for " + requestedPlayer.getName());
+                chatSP.send("God mode enabled for " + requestedPlayer.getName().getString());
             } else {
                 requestedPlayer.abilities.invulnerable = false;
                 requestedPlayer.sendAbilitiesUpdate();
-//                requestedPlayer.sendMessage(new TranslatableText("commands.god.disabled"), false);
                 chatRP.send("God mode disabled!");
-                chatSP.send("God mode disabled for " + requestedPlayer.getName());
+                chatSP.send("God mode disabled for " + requestedPlayer.getName().getString());
             }
         } else {
-//            playerEntity.sendMessage(new TranslatableText("commands.god.error"), false);
             chatSP.send("God: An error occurred!");
         }
 

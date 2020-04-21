@@ -30,13 +30,10 @@ public class CommandTpa {
 
         if (requestedPlayer.getUuid() != player.getUuid()) {
             TeleportRequests.add(requestedPlayer.getUuid(), player.getUuid());
-//            requestedPlayer.sendMessage(new TranslatableText("commands.tpa.request", (new LiteralText(player.getEntityName()))), false);
-//            requestedPlayer.sendMessage(new TranslatableText("commands.tpa.info", false), false);
-            chatSP.send("Request sent to " + requestedPlayer.getName());
-            chatRP.send("Teleport request from " + player.getName());
+            chatSP.send("Request sent to " + requestedPlayer.getName().getString());
+            chatRP.send("Teleport request from " + player.getName().getString());
             chatRP.send("/tpaccept /tpyes or /tpdeny /tpno");
         } else {
-//            requestedPlayer.sendMessage(new TranslatableText("commands.tpa.error", false), false);
             chatRP.send("You can't request yourself!");
         }
         return 1;

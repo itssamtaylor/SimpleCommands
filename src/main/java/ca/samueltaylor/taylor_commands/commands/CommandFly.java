@@ -37,19 +37,14 @@ public class CommandFly {
             if (!playerEntity.abilities.allowFlying) {
                 playerEntity.abilities.allowFlying = true;
                 playerEntity.sendAbilitiesUpdate();
-
-//                playerEntity.sendMessage(new TranslatableText("commands.fly.enabled"), false);
                 chat.send("You can now fly!");
             } else {
                 playerEntity.abilities.allowFlying = false;
                 playerEntity.abilities.flying = false;
                 playerEntity.sendAbilitiesUpdate();
-
-//                playerEntity.sendMessage(new TranslatableText("commands.fly.disabled"), false);
                 chat.send("You can no longer fly!");
             }
         } else {
-//            playerEntity.sendMessage(new TranslatableText("commands.fly.error"), false);
             chat.send("Fly: An error occurred!");
         }
 
@@ -67,21 +62,18 @@ public class CommandFly {
                 requestedPlayer.abilities.allowFlying = true;
                 requestedPlayer.sendAbilitiesUpdate();
 
-//                requestedPlayer.sendMessage(new TranslatableText("commands.fly.enabled"), false);
                 chatRP.send("You can now fly!");
-                chatSP.send(requestedPlayer.getName() + " can now fly!");
+                chatSP.send(requestedPlayer.getName().getString() + " can now fly!");
 
             } else {
                 requestedPlayer.abilities.allowFlying = false;
                 requestedPlayer.abilities.flying = false;
                 requestedPlayer.sendAbilitiesUpdate();
 
-//                requestedPlayer.sendMessage(new TranslatableText("commands.fly.disabled"), false);
                 chatRP.send("You can no longer fly!");
-                chatSP.send(requestedPlayer.getName() + " can no longer fly!");
+                chatSP.send(requestedPlayer.getName().getString() + " can no longer fly!");
             }
         } else {
-//            playerEntity.sendMessage(new TranslatableText("commands.fly.error"), false);
             chatSP.send("Fly: An error occurred!");
         }
 
