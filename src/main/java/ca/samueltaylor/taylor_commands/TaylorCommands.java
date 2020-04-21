@@ -126,6 +126,7 @@ public class TaylorCommands implements ModInitializer {
     	configOptions.put("tpaccept",false);
     	configOptions.put("tpdeny",false);
     	configOptions.put("warp",false);
+    	configOptions.put("maxHomes", 5);
 
         return configOptions;
 }

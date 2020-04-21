@@ -115,6 +115,10 @@ public class Config {
         return this.config.has(key) ? this.config.get(key).getAsInt() : 0;
     }
 
+    public int getInt(String key, int defaultValue) {
+        return this.config.has(key) ? this.config.get(key).getAsInt() : defaultValue;
+    }
+
     /**
      * Get a {@link Boolean} from the config
      * @param key - The name of the entry
