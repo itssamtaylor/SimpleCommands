@@ -19,9 +19,11 @@ import java.util.Map;
 
 public class TaylorCommands implements ModInitializer {
 
-	public static final String MODID ="taylor_commands" ;
+	public static final String MODID = "taylor_commands" ;
+	public static final String MOD_NAME = "TaylorCommands";
+
 	private static File worldDir;
-	public static Logger LOGGER = LogManager.getLogger("[TaylorCommands] ");
+	public static Logger LOGGER = LogManager.getLogger();
 	public static File configDir = FabricLoader.getInstance().getConfigDirectory();
 
 	public static File taylorCommandsDir = new File(configDir,"taylor_commands");
@@ -32,7 +34,7 @@ public class TaylorCommands implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.log(Level.INFO, "Starting init...");
+		log(Level.INFO, "Starting init...");
 
 		if(!taylorCommandsDir.exists()) makedir(taylorCommandsDir);
 		
@@ -63,7 +65,15 @@ public class TaylorCommands implements ModInitializer {
 		CommandRegistry.INSTANCE.register(false, CommandWarp::register);
 
 
-		LOGGER.log(Level.INFO, "Registered commands.");
+		log(Level.INFO, "Registered commands.");
+	}
+
+	public static void log(Level level, String message) {
+		LOGGER.log(level, "["+MOD_NAME+"] "+message);
+	}
+
+	public static void log(Level level, String message, Exception e) {
+		LOGGER.log(level, "["+MOD_NAME+"] "+message, e);
 	}
 
 	private static void initWorlds() {
