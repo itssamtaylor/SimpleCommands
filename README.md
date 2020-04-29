@@ -80,11 +80,15 @@ In this case `max` refers to the maximum number of homes a player can have, feel
 #### Randomly teleport
 `/rndtp`
 
-#### Accept a teleport request
+#### Request to teleport
 `/tpa`
+
+#### Accept a teleport request
+`/tpyes`
 `/tpaccept`
 
 #### Deny a teleport request
+`/tpno`
 `/tpdeny`
 
 ### Warp
