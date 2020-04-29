@@ -3,6 +3,14 @@ Server commands for Fabric 20w15a+
 
 Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 
+## Changes
+
+#### v0.2.0-20w16a.01
+
+- Redesigned the config file so you should delete your current one to allow the new one to be created
+- Added console logging, customizable in the config
+- Added ability to make some commands enabled/disabled or OP Only
+
 ## Commands
 ### Home
 #### Delete a home
