@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import com.mojang.brigadier.CommandDispatcher;
@@ -35,10 +36,12 @@ public class CommandGod {
                 playerEntity.abilities.invulnerable = true;
                 playerEntity.sendAbilitiesUpdate();
                 chat.send("God mode enabled!");
+                TaylorCommands.logCommand(playerEntity, "god", "enabled god mode");
             } else {
                 playerEntity.abilities.invulnerable = false;
                 playerEntity.sendAbilitiesUpdate();
                 chat.send("God mode disabled!");
+                TaylorCommands.logCommand(playerEntity, "god", "disabled god mode");
             }
         } else {
             chat.send("God: An error occurred!");
@@ -59,11 +62,13 @@ public class CommandGod {
                 requestedPlayer.sendAbilitiesUpdate();
                 chatRP.send("God mode enabled!");
                 chatSP.send("God mode enabled for " + requestedPlayer.getName().getString());
+                TaylorCommands.logCommand(playerEntity, "god", "enabled god mode for " + requestedPlayer.getName().getString());
             } else {
                 requestedPlayer.abilities.invulnerable = false;
                 requestedPlayer.sendAbilitiesUpdate();
                 chatRP.send("God mode disabled!");
                 chatSP.send("God mode disabled for " + requestedPlayer.getName().getString());
+                TaylorCommands.logCommand(playerEntity, "god", "disabled god mode for " + requestedPlayer.getName().getString());
             }
         } else {
             chatSP.send("God: An error occurred!");

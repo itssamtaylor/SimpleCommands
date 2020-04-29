@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import com.mojang.brigadier.CommandDispatcher;
@@ -32,6 +33,7 @@ public class CommandRain {
         context.getSource().getWorld().getLevelProperties().setRaining(true);
         context.getSource().getWorld().getLevelProperties().setThundering(false);
         chat.send("It's raining!");
+        TaylorCommands.logCommand(player, "rain");
         return 1;
 
     }

@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import com.mojang.brigadier.Command;
@@ -12,6 +13,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.TranslatableText;
+import org.apache.logging.log4j.Level;
 
 public class CommandDay {
 
@@ -31,6 +33,7 @@ public class CommandDay {
 
         world.setTimeOfDay(2000);
         chat.send("It's day!");
+        TaylorCommands.logCommand(player, "day");
         return Command.SINGLE_SUCCESS;
     }
 }

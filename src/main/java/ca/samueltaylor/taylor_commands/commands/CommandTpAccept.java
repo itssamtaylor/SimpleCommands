@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.commands.Command.TeleportRequests;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Location;
@@ -52,6 +53,8 @@ public class CommandTpAccept {
                     chatTP.send("Your request was accepted!");
 
                     Teleport.warp(teleporter, new Location(player), true);
+
+                    TaylorCommands.logCommand(player, "tpaccept", "accepted teleport request from " + teleporter.getName().getString());
                 }
             }
             if (!playerFound) {

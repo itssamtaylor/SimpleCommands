@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -26,6 +27,7 @@ public class CommandHeal {
         playerEntity.setHealth(playerEntity.getMaximumHealth());
         playerEntity.getHungerManager().setFoodLevel(20);
         //playerEntity.getHungerManager().setSaturationLevelClient(5F);
+        TaylorCommands.logCommand(playerEntity, "heal", "healed themselves");
         return 1;
     }
 
@@ -34,6 +36,7 @@ public class CommandHeal {
         requestedPlayer.setHealth(requestedPlayer.getMaximumHealth());
         requestedPlayer.getHungerManager().setFoodLevel(20);
         //requestedPlayer.getHungerManager().setSaturationLevelClient(5F);
+        TaylorCommands.logCommand(context.getSource().getPlayer(), "heal", "healed " + requestedPlayer.getName().getString());
         return 1;
     }
 }

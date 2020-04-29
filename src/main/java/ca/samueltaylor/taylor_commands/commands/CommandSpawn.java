@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.Location;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import ca.samueltaylor.taylor_commands.helper.Teleport;
@@ -30,6 +31,7 @@ public class CommandSpawn {
         int z = world.getLevelProperties().getSpawnZ();
         int dim = 0;
         Teleport.warp(player, new Location(x, y, z, dim), true);
+        TaylorCommands.logCommand(player, "spawn", "warped to spawn");
         return 1;
     }
 }

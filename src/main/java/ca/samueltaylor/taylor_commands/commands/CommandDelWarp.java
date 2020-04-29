@@ -1,6 +1,7 @@
 package ca.samueltaylor.taylor_commands.commands;
 
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import ca.samueltaylor.taylor_commands.helper.WarpPoint;
@@ -43,6 +44,7 @@ public class CommandDelWarp {
             } else {
                 WarpPoint.delWarpPoint(args);
                 chat.send("Warp " + args + " is deleted!");
+                TaylorCommands.logCommand(player, "delwarp", "deleted warp " + args);
             }
         }
         return 1;

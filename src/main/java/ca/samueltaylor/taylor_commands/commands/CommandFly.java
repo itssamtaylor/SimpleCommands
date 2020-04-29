@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import com.mojang.brigadier.CommandDispatcher;
@@ -38,11 +39,13 @@ public class CommandFly {
                 playerEntity.abilities.allowFlying = true;
                 playerEntity.sendAbilitiesUpdate();
                 chat.send("You can now fly!");
+                TaylorCommands.logCommand(playerEntity, "fly", "enabled fly.");
             } else {
                 playerEntity.abilities.allowFlying = false;
                 playerEntity.abilities.flying = false;
                 playerEntity.sendAbilitiesUpdate();
                 chat.send("You can no longer fly!");
+                TaylorCommands.logCommand(playerEntity, "fly", "disabled fly.");
             }
         } else {
             chat.send("Fly: An error occurred!");
@@ -64,7 +67,7 @@ public class CommandFly {
 
                 chatRP.send("You can now fly!");
                 chatSP.send(requestedPlayer.getName().getString() + " can now fly!");
-
+                TaylorCommands.logCommand(playerEntity, "fly", "enabled fly for " + requestedPlayer.getName().getString());
             } else {
                 requestedPlayer.abilities.allowFlying = false;
                 requestedPlayer.abilities.flying = false;
@@ -72,6 +75,7 @@ public class CommandFly {
 
                 chatRP.send("You can no longer fly!");
                 chatSP.send(requestedPlayer.getName().getString() + " can no longer fly!");
+                TaylorCommands.logCommand(playerEntity, "fly", "disabled fly for " + requestedPlayer.getName().getString());
             }
         } else {
             chatSP.send("Fly: An error occurred!");

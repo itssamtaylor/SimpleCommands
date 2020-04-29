@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import com.mojang.brigadier.CommandDispatcher;
@@ -31,6 +32,7 @@ public class CommandSun {
         context.getSource().getWorld().getLevelProperties().setRaining(false);
         context.getSource().getWorld().getLevelProperties().setThundering(false);
         chat.send("It's sunny!");
+        TaylorCommands.logCommand(player, "sun");
         return 1;
 
     }

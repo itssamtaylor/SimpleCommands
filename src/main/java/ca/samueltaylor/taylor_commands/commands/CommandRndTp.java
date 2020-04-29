@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.Location;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import ca.samueltaylor.taylor_commands.helper.Teleport;
@@ -51,6 +52,8 @@ public class CommandRndTp {
         }
 
         Teleport.warp(player, new Location(pos1, player.dimension.getRawId()), false);
+        TaylorCommands.logCommand(player, "rndtp");
+
         return 1;
 
     }

@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.commands.Command.TeleportRequests;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
@@ -41,6 +42,7 @@ public class CommandTpDeny {
             for (int i = 0; i < playerlist.size(); ++i) {
                 if (playerlist.get(i).getUuid().equals(TeleportRequests.fromWho(player.getUuid()))) {
                     new ChatMessage(playerlist.get(i)).send("Your request was denied");
+                    TaylorCommands.logCommand(player, "tpdeny", "denied teleport request from " + playerlist.get(i).getName().getString());
                 }
             }
             TeleportRequests.remove(player.getUuid());

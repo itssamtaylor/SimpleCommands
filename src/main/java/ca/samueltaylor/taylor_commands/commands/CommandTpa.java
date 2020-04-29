@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.commands.Command.TeleportRequests;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
@@ -33,6 +34,7 @@ public class CommandTpa {
             chatSP.send("Request sent to " + requestedPlayer.getName().getString());
             chatRP.send("Teleport request from " + player.getName().getString());
             chatRP.send("/tpaccept /tpyes or /tpdeny /tpno");
+            TaylorCommands.logCommand(player, "tpa", "requested to teleport to " + requestedPlayer.getName().getString());
         } else {
             chatRP.send("You can't request yourself!");
         }

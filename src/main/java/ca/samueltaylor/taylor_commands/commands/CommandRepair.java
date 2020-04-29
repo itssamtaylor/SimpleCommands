@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import com.mojang.brigadier.Command;
@@ -36,6 +37,7 @@ public class CommandRepair {
 
         if (item.isDamaged()) {
             chat.send("Item repaired!");
+            TaylorCommands.logCommand(player, "repair");
         } else {
             chat.send("Item is not damaged!");
         }

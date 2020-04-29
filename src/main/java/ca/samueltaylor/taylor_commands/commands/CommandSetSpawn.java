@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import com.mojang.brigadier.CommandDispatcher;
@@ -25,6 +26,7 @@ public class CommandSetSpawn {
         ChatMessage chat = new ChatMessage(player);
         context.getSource().getWorld().setSpawnPos(player.getBlockPos().up());
         chat.send("Spawn set!");
+        TaylorCommands.logCommand(player, "setspawn");
         return 1;
     }
 }

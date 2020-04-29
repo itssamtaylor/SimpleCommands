@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import ca.samueltaylor.taylor_commands.helper.WarpPoint;
@@ -37,6 +38,7 @@ public class CommandSetWarp {
             if (warpPoint == null) {
                 WarpPoint.setWarpPoint(player, args);
                 chat.send("Warp " + args + " is set!");
+                TaylorCommands.logCommand(player, "setwarp", "set warp point " + args);
             } else {
                 chat.send("Warp " + args + " already exists!");
             }

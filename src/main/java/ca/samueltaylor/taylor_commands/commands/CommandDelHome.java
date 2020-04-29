@@ -1,6 +1,7 @@
 package ca.samueltaylor.taylor_commands.commands;
 
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.HomePoint;
 import ca.samueltaylor.taylor_commands.helper.Permission;
@@ -40,6 +41,7 @@ public class CommandDelHome {
         } else {
             HomePoint.delHomePoint(player, args);
             chat.send("Home " + args + " is deleted!");
+            TaylorCommands.logCommand(player, "delhome");
         }
         return 1;
     }

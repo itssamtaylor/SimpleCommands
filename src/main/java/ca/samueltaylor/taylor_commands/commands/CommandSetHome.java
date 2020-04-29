@@ -5,6 +5,7 @@ import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.HomePoint;
 import ca.samueltaylor.taylor_commands.helper.Permission;
+import com.google.gson.JsonObject;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -16,6 +17,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.TranslatableText;
 
 public class CommandSetHome {
+    public static JsonObject homeConfig = TaylorCommands.config.get("commands").getAsJsonObject().get("sethome").getAsJsonObject();
+
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         LiteralArgumentBuilder<ServerCommandSource> literal = CommandManager.literal("sethome");
         literal.requires((source) -> {
@@ -32,11 +35,12 @@ public class CommandSetHome {
         int homes = HomePoint.getHomecounts(player);
         ChatMessage chat = new ChatMessage(player);
 
-        if (homes <= TaylorCommands.config.getInt("maxHomes", 5)) {
+        if (homes <= homeConfig.get("max").getAsInt()) {
             HomePoint home = HomePoint.getHome(player, args);
             if (home == null) {
                 HomePoint.setHome(player, args);
                 chat.send("Home " + HomePoint.getHome(player, args).homename + " set!");
+                TaylorCommands.logCommand(player, "sethome");
             } else {
                 chat.send("Could not set home, it already exists!");
                 chat.send("Your homes: " + HomePoint.gethomePoints(player));
@@ -53,11 +57,12 @@ public class CommandSetHome {
         int homes = HomePoint.getHomecounts(player);
         ChatMessage chat = new ChatMessage(player);
 
-        if (homes <= TaylorCommands.config.getInt("maxHomes", 5)) {
+        if (homes <= homeConfig.get("max").getAsInt()) {
             HomePoint home = HomePoint.getHome(player, "home");
             if (home == null) {
                 HomePoint.setHome(player, "home");
                 chat.send("Home " + HomePoint.getHome(player, "home").homename + " set!");
+                TaylorCommands.logCommand(player, "sethome");
             } else {
                 chat.send("Could not set home, it already exists!");
                 chat.send("Your homes: " + HomePoint.gethomePoints(player));

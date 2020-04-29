@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.Permission;
 import ca.samueltaylor.taylor_commands.helper.Teleport;
@@ -28,6 +29,7 @@ public class CommandBack {
 
         if (Teleport.goBack(player)) {
             chat.send("Warped to previous location!");
+            TaylorCommands.logCommand(player, "back");
         } else {
             chat.send("You have not warped anywhere!");
         }

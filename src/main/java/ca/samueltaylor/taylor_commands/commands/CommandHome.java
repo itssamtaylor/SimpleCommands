@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.ChatMessage;
 import ca.samueltaylor.taylor_commands.helper.HomePoint;
 import ca.samueltaylor.taylor_commands.helper.Permission;
@@ -37,16 +38,13 @@ public class CommandHome {
 
         if (home != null) {
             Teleport.warp(player, home.location, false);
-//            player.sendMessage(new TranslatableText("commands.home.done", home.homename), false);
             chat.send("Warped to home " + home.homename);
+            TaylorCommands.logCommand(player, "home");
         } else {
-//            player.sendMessage(new TranslatableText("commands.home.wrong"), false);
             chat.send("Home does not exist!");
             if (!HomePoint.gethomePoints(player).equals("")) {
-//                player.sendMessage(new TranslatableText("commands.home.list", HomePoint.gethomePoints(player)), false);
                 chat.send("Your homes: " + HomePoint.gethomePoints(player));
             } else {
-//                player.sendMessage(new TranslatableText("commands.home.failure"), false);
                 chat.send("Home not set!");
             }
         }
@@ -62,6 +60,7 @@ public class CommandHome {
         if (home != null) {
             Teleport.warp(player, home.location, false);
             chat.send("Warped home!");
+            TaylorCommands.logCommand(player, "home");
         } else {
             if (!HomePoint.gethomePoints(player).equals("")) {
                 chat.send("Your homes: " + HomePoint.gethomePoints(player));

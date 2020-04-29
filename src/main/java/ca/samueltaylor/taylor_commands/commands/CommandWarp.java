@@ -1,5 +1,6 @@
 package ca.samueltaylor.taylor_commands.commands;
 
+import ca.samueltaylor.taylor_commands.TaylorCommands;
 import ca.samueltaylor.taylor_commands.helper.*;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
@@ -40,6 +41,7 @@ public class CommandWarp {
                 Location loc = WarpPoint.getWarpPoint(par2ArrayOfStr).location;
                 Teleport.warp(player, loc, false);
                 chat.send("Warped to " + par2ArrayOfStr);
+                TaylorCommands.logCommand(player, "warp", "warped to " + par2ArrayOfStr);
             } else {
                 chat.send("Warp " + par2ArrayOfStr + " does not exist!");
                 chat.send("Warp points: " + WarpPoint.getWarpPoints());
