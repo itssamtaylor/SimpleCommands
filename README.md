@@ -11,6 +11,57 @@ Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 - Added console logging, customizable in the config
 - Added ability to make some commands enabled/disabled or OP Only
 
+## Config
+
+### Commands
+Each command can be toggled as enabled, disabled or opOnly in the config. 
+- `enabled` commands all players can use
+- `opOnly` commands only players that are OP status can use
+- `disabled` commands nobody can use
+
+The config is laid out as follows:
+
+```json
+"commands": {
+  "fly": {
+    "enabled": true, 
+    "opOnly": false
+  }
+}
+```
+
+Note: opOnly commands must have both `enabled` and `opOnly` set to `true`
+
+### Logging
+
+By default only `opOnly` commands are logged in the console, to log all commands, set the `player` value to `true`
+
+```json
+"log": {
+  "opOnly": true,
+  "player": true,
+  "includeModName": false
+}
+```
+
+`opOnly` will log the commands that have `opOnly: true` and `player` will log anything that has `opOnly: false`
+
+The `includeModName` setting will prepend `[TaylorCommands]` before the logging output.
+
+### Additional Settings
+
+Some commands have additional settings (currently just `sethome`)
+
+```json
+"sethome": {
+  "enabled": true,
+  "opOnly": false,
+  "max": 5
+}
+```
+
+In this case `max` refers to the maximum number of homes a player can have, feel free to customize.
+
 ## Commands
 ### Home
 #### Delete a home
