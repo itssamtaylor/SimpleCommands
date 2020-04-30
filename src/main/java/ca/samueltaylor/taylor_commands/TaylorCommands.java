@@ -48,10 +48,10 @@ public class TaylorCommands implements ModInitializer {
         CommandRegistry.INSTANCE.register(false, CommandDelHome::register);
         CommandRegistry.INSTANCE.register(false, CommandDelWarp::register);
         CommandRegistry.INSTANCE.register(false, CommandFly::register);
-        //CommandRegistry.INSTANCE.register(false, CommandGM::register);
         CommandRegistry.INSTANCE.register(false, CommandGod::register);
         CommandRegistry.INSTANCE.register(false, CommandHeal::register);
         CommandRegistry.INSTANCE.register(false, CommandHome::register);
+        CommandRegistry.INSTANCE.register(false, CommandListAll::register);
         CommandRegistry.INSTANCE.register(false, CommandRain::register);
         CommandRegistry.INSTANCE.register(false, CommandRepair::register);
         CommandRegistry.INSTANCE.register(false, CommandRndTp::register);

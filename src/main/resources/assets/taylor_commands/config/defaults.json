@@ -33,6 +33,11 @@
       "enabled": true,
       "opOnly": false
     },
+    "listall": {
+      "enabled": true,
+      "opOnly": false,
+      "defaultList": "warps"
+    },
     "heal": {
       "enabled": true,
       "opOnly": false
