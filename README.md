@@ -95,6 +95,9 @@ If `/listall` is provided with no argument the `defaultList` will be used.
 #### Set a home
 `/sethome`
 
+#### List all homes
+`/listall homes`
+
 ### Teleport
 #### Back to previous location
 `/back`
@@ -128,6 +131,9 @@ If `/listall` is provided with no argument the `defaultList` will be used.
 
 #### Warp to a warp point
 `/warp`
+
+#### List all warps
+`/listall warps`
 
 
 ### Health
