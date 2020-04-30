@@ -12,6 +12,8 @@ Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 	- `/listall home` will list all the player's homes
 	- `/listall warp` will list all the server's warps
 	- Aliases for each are `home`, `homes`, `h` for homes and `warp`, `warps`, `w` for warps
+- If you're having trouble with this command, you'll need to either delete your config file to allow a new one to be created or add the settings to the bottom of your existing, see [/listall settings](#listall)
+	
 
 #### v0.2.0-20w16a.01
 
@@ -60,7 +62,7 @@ The `includeModName` setting will prepend `[TaylorCommands]` before the logging 
 
 Some commands have additional settings
 
-**/sethome**
+##### /sethome
 
 ```json
 "sethome": {
@@ -72,7 +74,7 @@ Some commands have additional settings
 
 In this case `max` refers to the maximum number of homes a player can have, feel free to customize.
 
-**/listall**
+##### /listall
 
 ```json
 "listall": {
