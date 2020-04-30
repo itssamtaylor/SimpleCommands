@@ -76,7 +76,7 @@ In this case `max` refers to the maximum number of homes a player can have, feel
 
 ```json
 "listall": {
-  "enabled": true",
+  "enabled": true,
   "opOnly": false,
   "defaultList": "warp"
 }
