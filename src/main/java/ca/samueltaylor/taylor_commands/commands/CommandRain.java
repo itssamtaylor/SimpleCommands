@@ -27,11 +27,10 @@ public class CommandRain {
         ServerPlayerEntity player = context.getSource().getPlayer();
         ChatMessage chat = new ChatMessage(player);
 
-        context.getSource().getWorld().getLevelProperties().setClearWeatherTime(0);
-        context.getSource().getWorld().getLevelProperties().setRainTime(6000);
-        //context.getSource().getWorld().getLevelProperties().setThunderTime(int_1);
+//        context.getSource().getWorld().getLevelProperties().setClearWeatherTime(0);
+//        context.getSource().getWorld().getLevelProperties().setRainTime(6000);
         context.getSource().getWorld().getLevelProperties().setRaining(true);
-        context.getSource().getWorld().getLevelProperties().setThundering(false);
+//        context.getSource().getWorld().getLevelProperties().setThundering(false);
         chat.send("It's raining!");
         TaylorCommands.logCommand(player, "rain");
         return 1;

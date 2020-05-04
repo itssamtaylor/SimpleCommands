@@ -1,6 +1,8 @@
 package ca.samueltaylor.taylor_commands.helper;
 
 
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
@@ -100,7 +102,7 @@ public class Location
 
 	public void setSpawn(PlayerEntity player)
 	{
-		player.getEntityWorld().setSpawnPos(player.getBlockPos());
+		player.getServer().getWorld(player.getEntityWorld().getDimension().getType()).setSpawnPos(player.getBlockPos());
 	}
 
 	/**
