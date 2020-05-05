@@ -5,6 +5,10 @@ Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 
 ## Changes
 
+#### v0.3.1-20w18a.01
+
+- Updated code for 20w18a snapshot
+
 #### v0.3.0-20w16a.01
 
 - Added `/listall` command to list warps and homes
