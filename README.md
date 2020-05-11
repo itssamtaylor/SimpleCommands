@@ -3,7 +3,25 @@ Server commands for Fabric 20w15a+
 
 Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 
+1. [Changes](#changes)
+2. [Commands](#commands)
+	- [Home Commands](#home)
+	- [Teleport Commands](#teleport)
+	- [Warp Commands](#warp)
+	- [Health Commands](#health)
+	- [Item Commands](#items)
+	- [Weather\/Time Commands](#weather-time)
+	- [Player Commands](#player)
+3. [Config] (#config)
+	- [Commands Config](#commands-config)
+	- [Logging](#logging)
+	- [Additional Settings](#additional-settings)
+
 ## Changes
+
+#### v0.3.1-20w19a.01
+
+- Updated version to 20w19a snapshot
 
 #### v0.3.1-20w18a.01
 
@@ -24,71 +42,6 @@ Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 - Redesigned the config file so you should delete your current one to allow the new one to be created
 - Added console logging, customizable in the config
 - Added ability to make some commands enabled/disabled or OP Only
-
-## Config
-
-### Commands
-Each command can be toggled as enabled, disabled or opOnly in the config. 
-- `enabled` commands all players can use
-- `opOnly` commands only players that are OP status can use
-- `disabled` commands nobody can use
-
-The config is laid out as follows:
-
-```json
-"commands": {
-  "fly": {
-    "enabled": true, 
-    "opOnly": false
-  }
-}
-```
-
-Note: opOnly commands must have both `enabled` and `opOnly` set to `true`
-
-### Logging
-
-By default only `opOnly` commands are logged in the console, to log all commands, set the `player` value to `true`
-
-```json
-"log": {
-  "opOnly": true,
-  "player": true,
-  "includeModName": false
-}
-```
-
-`opOnly` will log the commands that have `opOnly: true` and `player` will log anything that has `opOnly: false`
-
-The `includeModName` setting will prepend `[TaylorCommands]` before the logging output.
-
-### Additional Settings
-
-Some commands have additional settings
-
-##### /sethome
-
-```json
-"sethome": {
-  "enabled": true,
-  "opOnly": false,
-  "max": 5
-}
-```
-
-In this case `max` refers to the maximum number of homes a player can have, feel free to customize.
-
-##### /listall
-
-```json
-"listall": {
-  "enabled": true,
-  "opOnly": false,
-  "defaultList": "warp"
-}
-```
-
-If `/listall` is provided with no argument the `defaultList` will be used.
 
 ## Commands
 ### Home
@@ -166,5 +119,71 @@ If `/listall` is provided with no argument the `defaultList` will be used.
 
 #### Make player invulnerable
 `/god`
+
+
+## Config
+
+### Commands Config
+Each command can be toggled as enabled, disabled or opOnly in the config. 
+- `enabled` commands all players can use
+- `opOnly` commands only players that are OP status can use
+- `disabled` commands nobody can use
+
+The config is laid out as follows:
+
+```json
+"commands": {
+  "fly": {
+    "enabled": true, 
+    "opOnly": false
+  }
+}
+```
+
+Note: opOnly commands must have both `enabled` and `opOnly` set to `true`
+
+### Logging
+
+By default only `opOnly` commands are logged in the console, to log all commands, set the `player` value to `true`
+
+```json
+"log": {
+  "opOnly": true,
+  "player": true,
+  "includeModName": false
+}
+```
+
+`opOnly` will log the commands that have `opOnly: true` and `player` will log anything that has `opOnly: false`
+
+The `includeModName` setting will prepend `[TaylorCommands]` before the logging output.
+
+### Additional Settings
+
+Some commands have additional settings
+
+##### /sethome
+
+```json
+"sethome": {
+  "enabled": true,
+  "opOnly": false,
+  "max": 5
+}
+```
+
+In this case `max` refers to the maximum number of homes a player can have, feel free to customize.
+
+##### /listall
+
+```json
+"listall": {
+  "enabled": true,
+  "opOnly": false,
+  "defaultList": "warp"
+}
+```
+
+If `/listall` is provided with no argument the `defaultList` will be used.
 
 
