@@ -66,6 +66,7 @@ public class TaylorCommands implements ModInitializer {
             CommandTpAccept.register(dispatcher);
             CommandTpDeny.register(dispatcher);
             CommandWarp.register(dispatcher);
+            CommandSuicide.register(dispatcher);
         }));
 
 //        CommandRegistry.INSTANCE.register(false, CommandBack::register);
@@ -139,8 +140,6 @@ public class TaylorCommands implements ModInitializer {
             WarpPoint.loadAll();
             HomePoint.loadAll();
         });
-
-
     }
 
     public static File getWorldDir() {

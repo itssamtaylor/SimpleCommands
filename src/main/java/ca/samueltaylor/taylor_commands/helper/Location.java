@@ -85,7 +85,7 @@ public class Location
 		}
 		catch(Exception e)
 		{
-			System.err.println("Exception on attemping to rebuild Location from String.");
+			System.err.println("Exception on attempting to rebuild Location from String.");
 			init(0,0,0, World.OVERWORLD.getValue());
 		}
 	}
