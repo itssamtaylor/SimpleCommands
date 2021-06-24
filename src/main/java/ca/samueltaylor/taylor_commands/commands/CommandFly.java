@@ -7,7 +7,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -35,14 +35,14 @@ public class CommandFly {
         ChatMessage chat = new ChatMessage(playerEntity);
 
         if (playerEntity.interactionManager.getGameMode() == GameMode.SURVIVAL || playerEntity.interactionManager.getGameMode() == GameMode.ADVENTURE) {
-            if (!playerEntity.abilities.allowFlying) {
-                playerEntity.abilities.allowFlying = true;
+            if (!playerEntity.getAbilities().allowFlying) {
+                playerEntity.getAbilities().allowFlying = true;
                 playerEntity.sendAbilitiesUpdate();
                 chat.send("You can now fly!");
                 TaylorCommands.logCommand(playerEntity, "fly", "enabled fly.");
             } else {
-                playerEntity.abilities.allowFlying = false;
-                playerEntity.abilities.flying = false;
+                playerEntity.getAbilities().allowFlying = false;
+                playerEntity.getAbilities().flying = false;
                 playerEntity.sendAbilitiesUpdate();
                 chat.send("You can no longer fly!");
                 TaylorCommands.logCommand(playerEntity, "fly", "disabled fly.");
@@ -61,16 +61,16 @@ public class CommandFly {
         ChatMessage chatSP = new ChatMessage(playerEntity);
 
         if (playerEntity.interactionManager.getGameMode() == GameMode.SURVIVAL || playerEntity.interactionManager.getGameMode() == GameMode.ADVENTURE) {
-            if (!requestedPlayer.abilities.allowFlying) {
-                requestedPlayer.abilities.allowFlying = true;
+            if (!requestedPlayer.getAbilities().allowFlying) {
+                requestedPlayer.getAbilities().allowFlying = true;
                 requestedPlayer.sendAbilitiesUpdate();
 
                 chatRP.send("You can now fly!");
                 chatSP.send(requestedPlayer.getName().getString() + " can now fly!");
                 TaylorCommands.logCommand(playerEntity, "fly", "enabled fly for " + requestedPlayer.getName().getString());
             } else {
-                requestedPlayer.abilities.allowFlying = false;
-                requestedPlayer.abilities.flying = false;
+                requestedPlayer.getAbilities().allowFlying = false;
+                requestedPlayer.getAbilities().flying = false;
                 requestedPlayer.sendAbilitiesUpdate();
 
                 chatRP.send("You can no longer fly!");

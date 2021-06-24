@@ -4,7 +4,10 @@ package ca.samueltaylor.taylor_commands.helper;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
 
 /**
  * contain a chunk location x,y,z
@@ -16,13 +19,18 @@ public class Location
 {
 	public int x,y,z;
 	public double posX,posY,posZ;
-	public int dimension;
+	public Identifier dimension;
+	public RegistryKey<World> world;
 	//private BlockPos pos;
 	
-	public Location(BlockPos pos, int dimension) {
+	public Location(BlockPos pos, Identifier dimension) {
 		init(pos.getX(),pos.getY(),pos.getZ(),dimension);
 	}
-	public Location(int x, int y, int z, int dimension)
+	public Location(BlockPos pos, RegistryKey<World> dimension) {
+		this(pos, dimension.getValue());
+		this.world = dimension;
+	}
+	public Location(int x, int y, int z, Identifier dimension)
 	{
 		this.x = x;
 		this.y = y;
@@ -34,10 +42,19 @@ public class Location
 
 		this.dimension = dimension;
 	}
+	public Location(int x, int y, int z, RegistryKey<World> dimension) {
+		this(x, y, z, dimension.getValue());
+		this.world = dimension;
+	}
 
-	public Location(double posX, double posY, double posZ, int dimension)
+	public Location(double posX, double posY, double posZ, Identifier dimension)
 	{
 		init(posX, posY, posZ, dimension);
+	}
+	public Location(double posX, double posY, double posZ, RegistryKey<World> dimension)
+	{
+		this(posX, posY, posZ, dimension.getValue());
+		this.world = dimension;
 	}
 
 	/**
@@ -53,7 +70,7 @@ public class Location
 	 */
 	public Location(PlayerEntity player, String s)
 	{
-		init(player.getX(), player.getY(), player.getZ(), (player.dimension).getRawId());
+		init(player.getX(), player.getY(), player.getZ(), player.world.getRegistryKey().getValue());
 
 	}
 	/**
@@ -64,12 +81,12 @@ public class Location
 		String[] part = info.split("[,]");
 		try
 		{
-			init(Double.parseDouble(part[0]), Double.parseDouble(part[1]), Double.parseDouble(part[2]), Integer.parseInt(part[3]));
+			init(Double.parseDouble(part[0]), Double.parseDouble(part[1]), Double.parseDouble(part[2]), new Identifier(part[3]));
 		}
 		catch(Exception e)
 		{
 			System.err.println("Exception on attemping to rebuild Location from String.");
-			init(0,0,0,0);
+			init(0,0,0, World.OVERWORLD.getValue());
 		}
 	}
 
@@ -83,10 +100,11 @@ public class Location
 		this.posY = player.getY();
 		this.posZ = player.getZ();
 
-		this.dimension = player.dimension.getRawId();
+		this.world = player.world.getRegistryKey();
+		this.dimension = this.world.getValue();
 	}
 
-	private void init(double posX, double posY, double posZ, int i)
+	private void init(double posX, double posY, double posZ, Identifier i)
 	{
 		this.x = round(posX);
 		this.y = round(posY);
@@ -102,7 +120,7 @@ public class Location
 
 	public void setSpawn(PlayerEntity player)
 	{
-		player.getServer().getWorld(player.getEntityWorld().getDimension().getType()).setSpawnPos(player.getBlockPos());
+		player.getServer().getWorld(player.getEntityWorld().getRegistryKey()).setSpawnPos(player.getBlockPos(), player.limbAngle);
 	}
 
 	/**

@@ -7,7 +7,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -32,13 +32,13 @@ public class CommandGod {
 
         if (playerEntity.interactionManager.getGameMode() == GameMode.SURVIVAL || playerEntity.interactionManager.getGameMode() == GameMode.ADVENTURE) {
 
-            if (!playerEntity.abilities.invulnerable) {
-                playerEntity.abilities.invulnerable = true;
+            if (!playerEntity.getAbilities().invulnerable) {
+                playerEntity.getAbilities().invulnerable = true;
                 playerEntity.sendAbilitiesUpdate();
                 chat.send("God mode enabled!");
                 TaylorCommands.logCommand(playerEntity, "god", "enabled god mode");
             } else {
-                playerEntity.abilities.invulnerable = false;
+                playerEntity.getAbilities().invulnerable = false;
                 playerEntity.sendAbilitiesUpdate();
                 chat.send("God mode disabled!");
                 TaylorCommands.logCommand(playerEntity, "god", "disabled god mode");
@@ -57,14 +57,14 @@ public class CommandGod {
         ChatMessage chatSP = new ChatMessage(playerEntity);
 
         if (playerEntity.interactionManager.getGameMode() == GameMode.SURVIVAL || playerEntity.interactionManager.getGameMode() == GameMode.ADVENTURE) {
-            if (!requestedPlayer.abilities.invulnerable) {
-                requestedPlayer.abilities.invulnerable = true;
+            if (!requestedPlayer.getAbilities().invulnerable) {
+                requestedPlayer.getAbilities().invulnerable = true;
                 requestedPlayer.sendAbilitiesUpdate();
                 chatRP.send("God mode enabled!");
                 chatSP.send("God mode enabled for " + requestedPlayer.getName().getString());
                 TaylorCommands.logCommand(playerEntity, "god", "enabled god mode for " + requestedPlayer.getName().getString());
             } else {
-                requestedPlayer.abilities.invulnerable = false;
+                requestedPlayer.getAbilities().invulnerable = false;
                 requestedPlayer.sendAbilitiesUpdate();
                 chatRP.send("God mode disabled!");
                 chatSP.send("God mode disabled for " + requestedPlayer.getName().getString());

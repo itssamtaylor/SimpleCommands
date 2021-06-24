@@ -2,6 +2,7 @@ package ca.samueltaylor.taylor_commands.helper;
 
 import ca.samueltaylor.taylor_commands.TaylorCommands;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
@@ -133,7 +134,7 @@ public class HomePoint
 			System.err.println("Exception on attemping to rebuild WarpPoint from String.");
 			UUID="Error";
 			homename = "Error";
-			location = new Location(0,0,0,0);
+			location = new Location(0,0,0, World.OVERWORLD);
 		}
 	}
 

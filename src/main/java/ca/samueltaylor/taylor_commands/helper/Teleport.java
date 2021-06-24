@@ -1,6 +1,11 @@
 package ca.samueltaylor.taylor_commands.helper;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.util.HashMap;
@@ -20,20 +25,34 @@ public class Teleport
 		}
 		playerBackMap.put(player, new Location(player));
 		
-		int dimension = loc.dimension;
+		RegistryKey<World> dimension = loc.world;
 
-		if (dimension != player.dimension.getRawId())
+		if (dimension == null) {
+			System.out.println("NULL DIMENSION, fallback engaged!");
+			dimension = World.OVERWORLD;
+		}
+
+		if (dimension != player.world.getRegistryKey()) {
 			//MyCommandBase.transDimension(player, loc);
-			player.changeDimension(DimensionType.byRawId(dimension));
+			MinecraftServer server = ((ServerWorld) player.world).getServer();
+			ServerWorld serverWorld = server.getWorld(dimension);
+			if (serverWorld == null) {
+				System.out.println("ERROR : NULL WORLD in " + dimension.getValue().toString() + " out of:");
+				server.getWorlds().forEach(e -> System.out.println("- " + e.getRegistryKey().getValue().toString()));
+				return;
+			} else {
+				player.moveToWorld(serverWorld);
+			}
+		}
 		if (!exact)
 		{
-			player.networkHandler.requestTeleport(loc.x + 0.5, loc.y, loc.z + 0.5,player.yaw, player.pitch);
+			player.networkHandler.requestTeleport(loc.x + 0.5, loc.y, loc.z + 0.5, player.getYaw(), player.getPitch());
 			//player.setPositionAndAngles(loc.x + 0.5, loc.y, loc.z + 0.5,player.pitch,player.yaw);
 			//player.setPosition(loc.x + 0.5, loc.y, loc.z + 0.5);
 
 		} else
 		{
-			player.networkHandler.requestTeleport(loc.posX, loc.posY, loc.posZ,player.yaw,player.pitch);
+			player.networkHandler.requestTeleport(loc.posX, loc.posY, loc.posZ, player.getYaw(),player.getPitch());
 		}
 	}
 

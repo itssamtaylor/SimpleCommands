@@ -24,7 +24,7 @@ public class CommandSetSpawn {
     public static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerPlayerEntity player = context.getSource().getPlayer();
         ChatMessage chat = new ChatMessage(player);
-        context.getSource().getWorld().setSpawnPos(player.getBlockPos().up());
+        context.getSource().getWorld().setSpawnPos(player.getBlockPos().up(), player.limbAngle);
         chat.send("Spawn set!");
         TaylorCommands.logCommand(player, "setspawn");
         return 1;
