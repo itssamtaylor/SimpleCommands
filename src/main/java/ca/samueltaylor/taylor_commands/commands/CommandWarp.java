@@ -39,7 +39,7 @@ public class CommandWarp {
 
             if (warpPoint != null) {
                 Location loc = WarpPoint.getWarpPoint(par2ArrayOfStr).location;
-                Teleport.warp(player, loc, false);
+                Teleport.warp(player, player.getServer().getWorld(loc.dimension), loc, false);
                 chat.send("Warped to " + par2ArrayOfStr);
                 TaylorCommands.logCommand(player, "warp", "warped to " + par2ArrayOfStr);
             } else {

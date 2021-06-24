@@ -37,7 +37,7 @@ public class CommandHome {
         ChatMessage chat = new ChatMessage(player);
 
         if (home != null) {
-            Teleport.warp(player, home.location, false);
+            Teleport.warp(player, player.getServer().getWorld(home.location.dimension), home.location, false);
             chat.send("Warped to home " + home.homename);
             TaylorCommands.logCommand(player, "home");
         } else {
@@ -58,7 +58,7 @@ public class CommandHome {
         ChatMessage chat = new ChatMessage(player);
 
         if (home != null) {
-            Teleport.warp(player, home.location, false);
+            Teleport.warp(player, player.getServer().getWorld(home.location.dimension), home.location, false);
             chat.send("Warped home!");
             TaylorCommands.logCommand(player, "home");
         } else {

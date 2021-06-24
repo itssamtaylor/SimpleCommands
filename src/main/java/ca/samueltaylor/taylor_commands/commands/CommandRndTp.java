@@ -51,7 +51,7 @@ public class CommandRndTp {
             pos1 = player.getEntityWorld().getTopPosition(Heightmap.Type.WORLD_SURFACE, pos1);
         }
 
-        Teleport.warp(player, new Location(pos1, player.world.getRegistryKey()), false);
+        Teleport.warp(player, player.getServerWorld(), new Location(pos1, player.world.getRegistryKey()), false);
         TaylorCommands.logCommand(player, "rndtp");
 
         return 1;
