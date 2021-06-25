@@ -19,7 +19,7 @@ Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 
 ## Changes
 
-#### v0.4.0-1.17.01
+#### [v0.4.0-1.17.01](https://github.com/samueljtaylor/TaylorCommands/pull/4)
 
 - Updated to 1.17
 - Added suicide command
