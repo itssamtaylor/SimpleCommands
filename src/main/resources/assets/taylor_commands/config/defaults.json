@@ -40,7 +40,7 @@
     },
     "heal": {
       "enabled": true,
-      "opOnly": false
+      "opOnly": true
     },
     "rain": {
       "enabled": true,
@@ -88,6 +88,10 @@
       "opOnly": false
     },
     "warp": {
+      "enabled": true,
+      "opOnly": false
+    },
+    "suicide": {
       "enabled": true,
       "opOnly": false
     }

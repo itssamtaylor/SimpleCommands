@@ -29,8 +29,7 @@ public class CommandSpawn {
         int x = world.getLevelProperties().getSpawnX();
         int y = world.getLevelProperties().getSpawnY();
         int z = world.getLevelProperties().getSpawnZ();
-        int dim = 0;
-        Teleport.warp(player, new Location(x, y, z, dim), true);
+        Teleport.warp(player, player.getServerWorld(), new Location(x, y, z, World.OVERWORLD), true);
         TaylorCommands.logCommand(player, "spawn", "warped to spawn");
         return 1;
     }

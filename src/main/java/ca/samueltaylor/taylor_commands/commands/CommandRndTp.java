@@ -51,7 +51,7 @@ public class CommandRndTp {
             pos1 = player.getEntityWorld().getTopPosition(Heightmap.Type.WORLD_SURFACE, pos1);
         }
 
-        Teleport.warp(player, new Location(pos1, player.dimension.getRawId()), false);
+        Teleport.warp(player, player.getServerWorld(), new Location(pos1, player.world.getRegistryKey()), false);
         TaylorCommands.logCommand(player, "rndtp");
 
         return 1;
@@ -79,7 +79,7 @@ public class CommandRndTp {
             y--;
 
             if (chunk.getBlockState(new BlockPos(x, y, z)).getMaterial() != Material.AIR) {
-                return new Location(x + 0.5D, y + 2.5D, z + 0.5D, world.getDimension().getType().getRawId());
+                return new Location(x + 0.5D, y + 2.5D, z + 0.5D, world.getRegistryKey());
             }
         }
 

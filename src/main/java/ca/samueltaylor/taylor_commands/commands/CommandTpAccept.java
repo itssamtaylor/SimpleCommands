@@ -52,7 +52,7 @@ public class CommandTpAccept {
                     chat.send("You accepted " + teleporter.getName().getString() + "'s request!");
                     chatTP.send("Your request was accepted!");
 
-                    Teleport.warp(teleporter, new Location(player), true);
+                    Teleport.warp(teleporter, player.getServerWorld(), new Location(player), true);
 
                     TaylorCommands.logCommand(player, "tpaccept", "accepted teleport request from " + teleporter.getName().getString());
                 }

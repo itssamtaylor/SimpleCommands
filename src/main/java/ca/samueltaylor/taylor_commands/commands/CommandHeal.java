@@ -6,7 +6,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.command.arguments.EntityArgumentType;
+import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -24,7 +24,7 @@ public class CommandHeal {
 
     private static int execute(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerPlayerEntity playerEntity = context.getSource().getPlayer();
-        playerEntity.setHealth(playerEntity.getMaximumHealth());
+        playerEntity.setHealth(playerEntity.getMaxHealth());
         playerEntity.getHungerManager().setFoodLevel(20);
         //playerEntity.getHungerManager().setSaturationLevelClient(5F);
         TaylorCommands.logCommand(playerEntity, "heal", "healed themselves");
@@ -33,7 +33,7 @@ public class CommandHeal {
 
     private static int execut(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerPlayerEntity requestedPlayer = Command.getPlayer(context.getSource(), EntityArgumentType.getPlayers(context, "target"));
-        requestedPlayer.setHealth(requestedPlayer.getMaximumHealth());
+        requestedPlayer.setHealth(requestedPlayer.getMaxHealth());
         requestedPlayer.getHungerManager().setFoodLevel(20);
         //requestedPlayer.getHungerManager().setSaturationLevelClient(5F);
         TaylorCommands.logCommand(context.getSource().getPlayer(), "heal", "healed " + requestedPlayer.getName().getString());
