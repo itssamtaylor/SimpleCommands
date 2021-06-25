@@ -19,6 +19,12 @@ Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 
 ## Changes
 
+#### v0.4.0-1.17.01
+
+- Updated to 1.17
+- Added suicide command
+- Fixed cross-dimensional travel
+
 #### v0.3.1-20w19a.01
 
 - Updated version to 20w19a snapshot
@@ -119,6 +125,9 @@ Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 
 #### Make player invulnerable
 `/god`
+
+#### Commit Suicide
+`/suicide`
 
 
 ## Config
