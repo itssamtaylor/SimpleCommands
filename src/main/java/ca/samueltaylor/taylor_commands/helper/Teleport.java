@@ -108,7 +108,7 @@ public class Teleport
 		if (playerBackMap.containsKey(player))
 		{
 			loc = playerBackMap.get(player);
-			warp(player, player.getServerWorld(), loc, true);
+			warp(player, player.getServer().getWorld(loc.dimension), loc, true);
 			return true;
 		} 
 		else
