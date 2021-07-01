@@ -3,6 +3,7 @@ package ca.samueltaylor.simple_commands;
 import ca.samueltaylor.simple_commands.commands.*;
 import ca.samueltaylor.simple_commands.helpers.Config;
 import ca.samueltaylor.simple_commands.helpers.Logger;
+import ca.samueltaylor.simple_commands.points.HomePointManager;
 import ca.samueltaylor.simple_commands.points.WarpPointManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
@@ -18,6 +19,7 @@ public class SimpleCommands implements ModInitializer {
     public static Path worldPath;
 
     public static Config config;
+    public static HomePointManager homePointManager;
     public static WarpPointManager warpPointManager;
 
     @Override
@@ -35,6 +37,8 @@ public class SimpleCommands implements ModInitializer {
             new Fly().register(dispatcher);
             new God().register(dispatcher);
             new Heal().register(dispatcher);
+            new Home().register(dispatcher);
+            new HomeSet().register(dispatcher);
             new Rain().register(dispatcher);
             new Repair().register(dispatcher);
             new Spawn().register(dispatcher);
@@ -49,11 +53,16 @@ public class SimpleCommands implements ModInitializer {
     protected void registerWarpListeners() {
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
             worldPath = server.getSavePath(WorldSavePath.ROOT);
+
+            homePointManager = new HomePointManager();
+            homePointManager.load();
+
             warpPointManager = new WarpPointManager();
             warpPointManager.load();
         });
 
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
+            homePointManager.save();
             warpPointManager.save();
         });
     }

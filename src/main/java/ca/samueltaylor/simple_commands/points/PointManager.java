@@ -50,7 +50,6 @@ abstract public class PointManager {
                this.add(this.pointFromJson(set.getKey(), set.getValue().getAsJsonObject()));
            });
            Logger.log(fileName + " - Successfully loaded " + this.points.size() + " points.");
-           Logger.log("Points: " + this.points.toString());
         } catch(FileNotFoundException exception) {
            Logger.fatal("Could not load " + fileName);
         }

@@ -7,6 +7,7 @@ import com.mojang.brigadier.tree.LiteralCommandNode;
 import net.minecraft.server.command.ServerCommandSource;
 
 abstract public class RequiredStringArgument extends BaseCommand {
+
     protected static String argumentName;
     protected static StringArgumentType argumentType = StringArgumentType.word();
 
