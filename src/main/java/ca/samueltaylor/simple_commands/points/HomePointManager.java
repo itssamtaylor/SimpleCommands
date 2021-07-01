@@ -51,7 +51,8 @@ public class HomePointManager extends PointManager {
 
                 this.points.put(set.getKey(), playerHomes);
             });
-            Logger.log(this.getFileName() + " - Successfully loaded " + this.points.size() + " points.");
+            this.changed = false;
+            Logger.log("Successfully loaded " + pointFile.getName());
         } catch (FileNotFoundException exception) {
             Logger.fatal("Could not load " + this.getFileName());
         }
@@ -65,10 +66,12 @@ public class HomePointManager extends PointManager {
             playerHomes.put(homePoint.name, homePoint);
             this.points.put(player.getUuidAsString(), playerHomes);
         }
+        this.changed = true;
     }
 
     public void delete(PlayerEntity player, String name) {
         this.points.get(player.getUuidAsString()).remove(name);
+        this.changed = true;
     }
 
     @Override

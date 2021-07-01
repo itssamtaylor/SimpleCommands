@@ -48,7 +48,7 @@ abstract public class PointManager {
            json.entrySet().iterator().forEachRemaining(set -> {
                this.add(this.pointFromJson(set.getKey(), set.getValue().getAsJsonObject()));
            });
-           Logger.log(this.getFileName() + " - Successfully loaded " + this.points.size() + " points.");
+           Logger.log("Successfully loaded " + pointFile.getName());
            this.changed = false;
         } catch(FileNotFoundException exception) {
            Logger.fatal("Could not load " + this.getFileName());
@@ -66,10 +66,14 @@ abstract public class PointManager {
     }
 
     public void save() {
+
         if(this.changed) {
             try {
+                String data = new GsonBuilder().setPrettyPrinting().create().toJson(this.points);
+                Logger.log(pointFile.getName() + " - " + data);
+
                 FileWriter writer = new FileWriter(pointFile);
-                new GsonBuilder().setPrettyPrinting().create().toJson(this.points, writer);
+                writer.write(data);
                 writer.close();
 
                 Logger.log(pointFile.getName() + " saved successfully.");
