@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "taylor_commands",
+  "id": "simple_commands",
   "version": "${version}",
-  "name": "TaylorCommands Fabric",
+  "name": "SimpleCommands Fabric",
   "description": "Commands for fabric",
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
     "main": [
-	  "ca.samueltaylor.taylor_commands.TaylorCommands"
+	  "ca.samueltaylor.simple_commands.SimpleCommands"
     ]
   },
   "depends": {
