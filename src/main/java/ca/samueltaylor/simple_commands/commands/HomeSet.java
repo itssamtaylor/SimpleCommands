@@ -1,7 +1,6 @@
 package ca.samueltaylor.simple_commands.commands;
 
 import ca.samueltaylor.simple_commands.abstract_commands.OptionalStringArgument;
-import ca.samueltaylor.simple_commands.abstract_commands.RequiredStringArgument;
 import ca.samueltaylor.simple_commands.helpers.Chat;
 import ca.samueltaylor.simple_commands.points.HomePoint;
 import ca.samueltaylor.simple_commands.points.HomePointManager;
@@ -31,7 +30,7 @@ public class HomeSet extends OptionalStringArgument {
         PlayerEntity player = commandContext.getSource().getPlayer();
         Chat chat = new Chat(player);
 
-        HomePointManager.instance().add(new HomePoint(homeName, player));
+        HomePointManager.instance().add(player, new HomePoint(homeName, player));
         chat.send("Home " + homeName + " created!");
 
         return Command.SINGLE_SUCCESS;

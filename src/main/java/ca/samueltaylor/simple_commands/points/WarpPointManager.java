@@ -6,10 +6,11 @@ import com.google.gson.JsonObject;
 import java.util.HashMap;
 
 public class WarpPointManager extends PointManager {
-    protected HashMap<String, WarpPoint> points = new HashMap<String, WarpPoint>();
 
-    static {
-        fileName = "warps.json";
+    protected HashMap<String, WarpPoint> warpPoints = new HashMap<>();
+
+    public WarpPointManager() {
+        super();
     }
 
     protected WarpPoint pointFromJson(String name, JsonObject json) {
@@ -23,5 +24,15 @@ public class WarpPointManager extends PointManager {
     @Override
     public WarpPoint getPoint(String name) {
         return (WarpPoint) super.getPoint(name);
+    }
+
+    @Override
+    public String getFileName() {
+        return "warps.json";
+    }
+
+    @Override
+    public void save() {
+        JsonFileWriter.write(pointFile, this.warpPoints);
     }
 }

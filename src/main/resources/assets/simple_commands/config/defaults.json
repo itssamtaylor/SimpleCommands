@@ -29,6 +29,10 @@
       "enabled": true,
       "opOnly": true
     },
+    "heal": {
+      "enabled": true,
+      "opOnly": true
+    },
     "home": {
       "enabled": true,
       "opOnly": false
@@ -37,10 +41,6 @@
       "enabled": true,
       "opOnly": false,
       "defaultList": "warps"
-    },
-    "heal": {
-      "enabled": true,
-      "opOnly": true
     },
     "rain": {
       "enabled": true,
@@ -71,6 +71,10 @@
       "enabled": true,
       "opOnly": false
     },
+    "suicide": {
+      "enabled": true,
+      "opOnly": false
+    },
     "sun": {
       "enabled": true,
       "opOnly": true
@@ -88,10 +92,6 @@
       "opOnly": false
     },
     "warp": {
-      "enabled": true,
-      "opOnly": false
-    },
-    "suicide": {
       "enabled": true,
       "opOnly": false
     }

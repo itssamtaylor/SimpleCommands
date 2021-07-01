@@ -46,6 +46,7 @@ public class SimpleCommands implements ModInitializer {
             new Suicide().register(dispatcher);
             new Sun().register(dispatcher);
             new Warp().register(dispatcher);
+            new WarpDel().register(dispatcher);
             new WarpSet().register(dispatcher);
         });
     }
