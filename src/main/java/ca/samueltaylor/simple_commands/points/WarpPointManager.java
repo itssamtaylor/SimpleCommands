@@ -30,9 +30,4 @@ public class WarpPointManager extends PointManager {
     public String getFileName() {
         return "warps.json";
     }
-
-    @Override
-    public void save() {
-        JsonFileWriter.write(pointFile, this.warpPoints);
-    }
 }

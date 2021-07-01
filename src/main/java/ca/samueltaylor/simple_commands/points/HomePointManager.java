@@ -76,9 +76,4 @@ public class HomePointManager extends PointManager {
         return "homes.json";
     }
 
-    @Override
-    public void save() {
-        JsonFileWriter.write(pointFile, this.points);
-    }
-
 }

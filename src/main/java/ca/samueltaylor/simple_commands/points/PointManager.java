@@ -14,6 +14,7 @@ abstract public class PointManager {
 
     public HashMap<String, Point> points = new HashMap<>();
     protected File pointFile;
+    protected boolean changed = false;
 
     public PointManager() {
         Path pointFilePath = SimpleCommands.worldPath.resolve(SimpleCommands.MOD_ID);
@@ -48,6 +49,7 @@ abstract public class PointManager {
                this.add(this.pointFromJson(set.getKey(), set.getValue().getAsJsonObject()));
            });
            Logger.log(this.getFileName() + " - Successfully loaded " + this.points.size() + " points.");
+           this.changed = false;
         } catch(FileNotFoundException exception) {
            Logger.fatal("Could not load " + this.getFileName());
         }
@@ -55,13 +57,27 @@ abstract public class PointManager {
 
     public void add(Point point) {
         this.points.put(point.name, point);
+        this.changed = true;
     }
 
     public void delete(String pointName) {
         this.points.remove(pointName);
+        this.changed = true;
     }
 
-    abstract public void save();
+    public void save() {
+        if(this.changed) {
+            try {
+                FileWriter writer = new FileWriter(pointFile);
+                new GsonBuilder().setPrettyPrinting().create().toJson(this.points, writer);
+                writer.close();
+
+                Logger.log(pointFile.getName() + " saved successfully.");
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
 
     public static PointManager instance() {
         return SimpleCommands.warpPointManager;
