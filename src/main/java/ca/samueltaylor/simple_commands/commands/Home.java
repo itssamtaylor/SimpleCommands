@@ -29,7 +29,7 @@ public class Home extends OptionalStringArgument {
 
     protected int run(CommandContext<ServerCommandSource> commandContext, String homeName) throws CommandSyntaxException {
         PlayerEntity player = commandContext.getSource().getPlayer();
-        HomePoint home = HomePointManager.instance().getPoint(player, homeName);
+        HomePoint home = HomePointManager.instance().getHome(player, homeName);
         Chat chat = new Chat(player);
 
         if(home == null) {

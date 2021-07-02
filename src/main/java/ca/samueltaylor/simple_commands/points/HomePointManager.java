@@ -16,6 +16,7 @@ public class HomePointManager {
     protected HashMap<String, HashMap<String, HomePoint>> homes = new HashMap<String, HashMap<String, HomePoint>>();
     protected File homeFile;
     protected boolean changed = false;
+    protected int maxHomes;
     
     public HomePointManager() {
         Path homeFilePath = SimpleCommands.worldPath.resolve(SimpleCommands.MOD_ID);
@@ -31,6 +32,11 @@ public class HomePointManager {
             Logger.log(homeFile.getName() + " not found, creating...");
             createFile();
         }
+
+        this.maxHomes = SimpleCommands.config
+                .get("commands").getAsJsonObject()
+                .get("sethome").getAsJsonObject()
+                .get("max").getAsInt();
     }
 
     protected void createFile() {
@@ -59,7 +65,7 @@ public class HomePointManager {
         return this.getHomes(player).keySet().toString();
     }
 
-    public HomePoint getPoint(PlayerEntity player, String homeName) {
+    public HomePoint getHome(PlayerEntity player, String homeName) {
         return this.getHomes(player).get(homeName);
     }
     
@@ -91,6 +97,14 @@ public class HomePointManager {
             this.homes.put(player.getUuidAsString(), playerHomes);
         }
         this.changed();
+    }
+
+    public boolean canAddHome(PlayerEntity player, String homeName) {
+        return this.canAddHome(player) || this.getHome(player, homeName) != null;
+    }
+
+    public boolean canAddHome(PlayerEntity player) {
+        return this.getHomes(player).size() < this.maxHomes;
     }
 
     public void delete(PlayerEntity player, String name) {

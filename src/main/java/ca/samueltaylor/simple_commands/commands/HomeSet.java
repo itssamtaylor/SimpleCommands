@@ -29,9 +29,15 @@ public class HomeSet extends OptionalStringArgument {
     protected int run(CommandContext<ServerCommandSource> commandContext, String homeName) throws CommandSyntaxException {
         PlayerEntity player = commandContext.getSource().getPlayer();
         Chat chat = new Chat(player);
+        HomePointManager homePointManager = HomePointManager.instance();
 
-        HomePointManager.instance().add(player, new HomePoint(homeName, player));
-        chat.send("Home " + homeName + " created!");
+        if(homePointManager.canAddHome(player, homeName)) {
+            homePointManager.add(player, new HomePoint(homeName, player));
+            chat.send("Home " + homeName + " created!");
+            return Command.SINGLE_SUCCESS;
+        }
+
+        chat.send("You already have the maximum number of homes!");
 
         return Command.SINGLE_SUCCESS;
     }
