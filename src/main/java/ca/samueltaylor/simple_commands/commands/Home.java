@@ -29,22 +29,21 @@ public class Home extends OptionalStringArgument {
 
     protected int run(CommandContext<ServerCommandSource> commandContext, String homeName) throws CommandSyntaxException {
         PlayerEntity player = commandContext.getSource().getPlayer();
-        HomePoint home = HomePointManager.instance().getHome(player, homeName);
+        HomePointManager homePointManager = HomePointManager.instance();
+        HomePoint home = homePointManager.getHome(player, homeName);
         Chat chat = new Chat(player);
 
-        if(home == null) {
-            if(!homeName.equals("")) {
-                chat.send(homeName + " not found!");
-            }
+        if(home != null) {
+            home.teleport(player, commandContext.getSource().getWorld());
+            chat.send("Teleported to your home " + homeName);
 
-            chat.send("Your homes: " + HomePointManager.instance().listHomes(player));
+            this.logCommand(commandContext);
             return Command.SINGLE_SUCCESS;
         }
 
-        home.teleport(player, commandContext.getSource().getWorld());
-        chat.send("Teleported to your home " + homeName);
-
-        this.logCommand(commandContext);
+        chat.send(homeName + " not found!");
+        chat.send("Your homes: " + homePointManager.listHomes(player));
         return Command.SINGLE_SUCCESS;
+
     }
 }

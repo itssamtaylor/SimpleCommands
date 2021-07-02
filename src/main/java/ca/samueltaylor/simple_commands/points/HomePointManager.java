@@ -57,16 +57,23 @@ public class HomePointManager {
         return SimpleCommands.homePointManager;
     }
 
+    public HashMap<String, HashMap<String, HomePoint>> getAllHomes() {
+        return homes;
+    }
+
+
     public HashMap<String, HomePoint> getHomes(PlayerEntity player) {
         return this.homes.get(player.getUuidAsString());
     }
 
     public String listHomes(PlayerEntity player) {
-        return this.getHomes(player).keySet().toString();
+        HashMap<String, HomePoint> playerHomes = this.getHomes(player);
+        return playerHomes != null ? playerHomes.keySet().toString() : "[]";
     }
 
     public HomePoint getHome(PlayerEntity player, String homeName) {
-        return this.getHomes(player).get(homeName);
+        HashMap<String, HomePoint> playerHomes = this.getHomes(player);
+        return playerHomes != null ? playerHomes.get(homeName) : null;
     }
     
     public void load() {
@@ -104,7 +111,7 @@ public class HomePointManager {
     }
 
     public boolean canAddHome(PlayerEntity player) {
-        return this.getHomes(player).size() < this.maxHomes;
+        return this.getHomes(player) == null || this.getHomes(player).size() < this.maxHomes;
     }
 
     public void delete(PlayerEntity player, String name) {
