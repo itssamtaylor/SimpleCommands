@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "taylor_commands",
+  "id": "simple_commands",
   "version": "${version}",
-  "name": "TaylorCommands Fabric",
-  "description": "Commands for fabric",
+  "name": "SimpleCommands Fabric",
+  "description": "SimpleCommands for fabric",
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
     "main": [
-	  "ca.samueltaylor.taylor_commands.TaylorCommands"
+	  "ca.samueltaylor.simple_commands.SimpleCommands"
     ]
   },
   "depends": {
@@ -20,6 +20,7 @@
   ],
   "authors": [
     "Markus23",
-    "Sam Taylor"
+    "Sam Taylor",
+    "CDAGaming"
   ]
 }

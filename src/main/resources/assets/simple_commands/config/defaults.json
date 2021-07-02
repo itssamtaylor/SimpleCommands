@@ -1,0 +1,95 @@
+{
+  "log": {
+    "opOnly": true,
+    "player": false,
+    "includeModName": true
+  },
+  "commands": {
+    "back": {
+      "enabled": true,
+      "opOnly": false
+    },
+    "day": {
+      "enabled": true,
+      "opOnly": true
+    },
+    "delhome": {
+      "enabled": true,
+      "opOnly": false
+    },
+    "delwarp": {
+      "enabled": true,
+      "opOnly": true
+    },
+    "fly": {
+      "enabled": true,
+      "opOnly": true
+    },
+    "god": {
+      "enabled": true,
+      "opOnly": true
+    },
+    "heal": {
+      "enabled": true,
+      "opOnly": true
+    },
+    "home": {
+      "enabled": true,
+      "opOnly": false
+    },
+    "listall": {
+      "enabled": true,
+      "opOnly": false,
+      "defaultList": "warps"
+    },
+    "rain": {
+      "enabled": true,
+      "opOnly": true
+    },
+    "repair": {
+      "enabled": true,
+      "opOnly": true
+    },
+    "sethome": {
+      "enabled": true,
+      "opOnly": false,
+      "max": 5
+    },
+    "setspawn": {
+      "enabled": true,
+      "opOnly": true
+    },
+    "setwarp": {
+      "enabled": true,
+      "opOnly": true
+    },
+    "spawn": {
+      "enabled": true,
+      "opOnly": false
+    },
+    "suicide": {
+      "enabled": true,
+      "opOnly": false
+    },
+    "sun": {
+      "enabled": true,
+      "opOnly": true
+    },
+    "tpa": {
+      "enabled": true,
+      "opOnly": false
+    },
+    "tpaccept": {
+      "enabled": true,
+      "opOnly": false
+    },
+    "tpdeny": {
+      "enabled": true,
+      "opOnly": false
+    },
+    "warp": {
+      "enabled": true,
+      "opOnly": false
+    }
+  }
+}
