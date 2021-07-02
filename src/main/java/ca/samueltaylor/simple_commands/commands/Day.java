@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class Day extends BaseCommand {
-    static {
+    public Day() {
         command = "day";
     }
 
@@ -21,6 +21,7 @@ public class Day extends BaseCommand {
         commandContext.getSource().getWorld().setTimeOfDay(2000);
         chat.send("It's day!");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

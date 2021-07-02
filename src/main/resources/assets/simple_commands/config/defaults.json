@@ -50,10 +50,6 @@
       "enabled": true,
       "opOnly": true
     },
-    "rndtp": {
-      "enabled": true,
-      "opOnly": false
-    },
     "sethome": {
       "enabled": true,
       "opOnly": false,

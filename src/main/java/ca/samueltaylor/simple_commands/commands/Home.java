@@ -12,7 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class Home extends OptionalStringArgument {
-    static {
+    public Home() {
         command = "home";
         argumentName = "HomeName";
     }
@@ -44,6 +44,7 @@ public class Home extends OptionalStringArgument {
         home.teleport(player, commandContext.getSource().getWorld());
         chat.send("Teleported to your home " + homeName);
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

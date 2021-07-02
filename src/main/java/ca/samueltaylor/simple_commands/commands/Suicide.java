@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class Suicide extends BaseCommand {
-    static {
+    public Suicide() {
         command = "suicide";
     }
 
@@ -21,6 +21,7 @@ public class Suicide extends BaseCommand {
         player.kill();
         chat.send("You killed yourself!");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

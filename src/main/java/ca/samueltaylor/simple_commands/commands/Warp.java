@@ -12,7 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class Warp extends RequiredStringArgument {
-    static {
+    public Warp() {
         command = "warp";
         argumentName = "WarpPointName";
     }
@@ -35,6 +35,7 @@ public class Warp extends RequiredStringArgument {
 
         warpPoint.teleport(player, commandContext.getSource().getWorld());
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

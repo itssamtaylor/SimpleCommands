@@ -12,7 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class HomeSet extends OptionalStringArgument {
-    static {
+    public HomeSet() {
         command = "sethome";
         argumentName = "HomeName";
     }
@@ -39,6 +39,7 @@ public class HomeSet extends OptionalStringArgument {
 
         chat.send("You already have the maximum number of homes!");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

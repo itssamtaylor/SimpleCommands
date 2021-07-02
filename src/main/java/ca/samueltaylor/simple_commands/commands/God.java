@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class God extends BaseCommand {
-    static {
+    public God() {
         command = "god";
     }
 
@@ -23,6 +23,7 @@ public class God extends BaseCommand {
         player.sendAbilitiesUpdate();
         chat.send("God mode " + (toggle ? "enabled!" : "disabled!"));
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class Fly extends BaseCommand {
-    static {
+    public Fly() {
         command = "fly";
     }
 
@@ -25,6 +25,7 @@ public class Fly extends BaseCommand {
 
         chat.send("You can " + (toggle ? "now" : "no longer") + " fly.");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

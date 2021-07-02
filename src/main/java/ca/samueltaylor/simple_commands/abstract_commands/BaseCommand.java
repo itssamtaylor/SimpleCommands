@@ -1,6 +1,8 @@
 package ca.samueltaylor.simple_commands.abstract_commands;
 
+import ca.samueltaylor.simple_commands.helpers.Logger;
 import ca.samueltaylor.simple_commands.helpers.Permission;
+import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
@@ -10,7 +12,7 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
 abstract public class BaseCommand {
-    public static String command;
+    public String command;
 
     protected LiteralCommandNode<ServerCommandSource> baseNode;
 
@@ -22,7 +24,10 @@ abstract public class BaseCommand {
 
     public LiteralCommandNode<ServerCommandSource> getBaseNode() {
         if(this.baseNode == null) {
-            this.baseNode = this.getBaseBuilder().requires(this::requirements).executes(this::execute).build();
+            this.baseNode = this.getBaseBuilder()
+                    .requires(this::requirements)
+                    .executes(this::execute)
+                    .build();
         }
         return this.baseNode;
     }
@@ -36,6 +41,11 @@ abstract public class BaseCommand {
             this.baseBuilder = CommandManager.literal(command);
         }
         return this.baseBuilder;
+    }
+
+    protected int logCommand(CommandContext<ServerCommandSource> commandContext) throws CommandSyntaxException {
+        Logger.logCommand(commandContext.getSource().getPlayer(), command);
+        return Command.SINGLE_SUCCESS;
     }
 
     abstract public int execute(CommandContext<ServerCommandSource> commandContext) throws CommandSyntaxException;

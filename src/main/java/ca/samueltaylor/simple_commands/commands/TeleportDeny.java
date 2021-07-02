@@ -10,7 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class TeleportDeny extends BaseCommand {
-    static {
+    public TeleportDeny() {
         command = "tpdeny";
     }
 
@@ -19,9 +19,10 @@ public class TeleportDeny extends BaseCommand {
         PlayerEntity player = commandContext.getSource().getPlayer();
         PlayerEntity requester = TeleportRequests.deny(player);
 
-        Chat.send(player, "Denied " + requester.getName() + "'s teleport request");
-        Chat.send(requester, player.getName() + " denied your teleport request");
+        Chat.send(player, "Denied " + requester.getName().getString() + "'s teleport request");
+        Chat.send(requester, player.getName().getString() + " denied your teleport request");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

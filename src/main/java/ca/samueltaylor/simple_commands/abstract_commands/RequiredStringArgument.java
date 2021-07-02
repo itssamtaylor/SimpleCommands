@@ -8,8 +8,8 @@ import net.minecraft.server.command.ServerCommandSource;
 
 abstract public class RequiredStringArgument extends BaseCommand {
 
-    protected static String argumentName;
-    protected static StringArgumentType argumentType = StringArgumentType.word();
+    protected String argumentName;
+    protected StringArgumentType argumentType = StringArgumentType.word();
 
     @Override
     public void register(CommandDispatcher<ServerCommandSource> dispatcher) {

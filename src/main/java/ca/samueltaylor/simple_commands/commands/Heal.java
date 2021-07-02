@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class Heal extends BaseCommand {
-    static {
+    public Heal() {
         command = "heal";
     }
 
@@ -22,6 +22,7 @@ public class Heal extends BaseCommand {
         player.getHungerManager().setFoodLevel(20);
         chat.send("You're fully healed.");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

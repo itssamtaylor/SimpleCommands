@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import java.util.Objects;
 
 public class Spawn extends BaseCommand {
-    static {
+    public Spawn() {
         command = "spawn";
     }
 
@@ -27,6 +27,8 @@ public class Spawn extends BaseCommand {
         int z = world.getLevelProperties().getSpawnZ();
 
         Teleport.teleport(player, Objects.requireNonNull(player.getServer()).getWorld(World.OVERWORLD), new Location(x, y, z, World.OVERWORLD));
+
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

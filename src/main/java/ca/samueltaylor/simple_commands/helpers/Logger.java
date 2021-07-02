@@ -8,7 +8,6 @@ import org.apache.logging.log4j.LogManager;
 
 public class Logger {
     protected static org.apache.logging.log4j.Logger logger = LogManager.getLogger();
-    protected static Config config = SimpleCommands.config;
 
     protected static String getPrefix() {
         return "[" + SimpleCommands.MOD_NAME + "] ";
@@ -31,8 +30,8 @@ public class Logger {
     }
 
     public static void logCommand(PlayerEntity player, String command, String message) {
-        JsonObject logConfig = config.get("log").getAsJsonObject();
-        JsonObject commandConfig = config.get("commands").getAsJsonObject();
+        JsonObject logConfig = SimpleCommands.config.get("log").getAsJsonObject();
+        JsonObject commandConfig = SimpleCommands.config.get("commands").getAsJsonObject();
         boolean performLog;
 
         if(commandConfig.get(command).getAsJsonObject().get("opOnly").getAsBoolean()) {
@@ -42,10 +41,12 @@ public class Logger {
         }
 
         if(performLog) {
+            String logMessage = "[" + player.getName().getString() + " " + message + "]";
+
             if(logConfig.get("includeModName").getAsBoolean()) {
-                log("[" + player.getName().getString() + " " + message + "]");
+                log(logMessage);
             } else {
-                log(Level.INFO, "[" + player.getName().getString() + " " + message + "]");
+                logger.log(Level.INFO, logMessage);
             }
         }
     }

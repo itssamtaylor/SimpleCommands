@@ -10,7 +10,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 
 public class SpawnSet extends BaseCommand {
-    static {
+    public SpawnSet() {
         command = "setspawn";
     }
 
@@ -23,6 +23,7 @@ public class SpawnSet extends BaseCommand {
         world.setSpawnPos(player.getBlockPos().up(), player.limbAngle);
         chat.send("Spawn set!");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

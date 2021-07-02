@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class Repair extends BaseCommand {
-    static {
+    public Repair() {
         command = "repair";
     }
 
@@ -26,6 +26,8 @@ public class Repair extends BaseCommand {
         } else {
             chat.send("Item is not damaged!");
         }
+
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

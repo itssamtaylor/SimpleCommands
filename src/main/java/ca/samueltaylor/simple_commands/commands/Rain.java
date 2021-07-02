@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class Rain extends BaseCommand {
-    static {
+    public Rain() {
         command = "rain";
     }
 
@@ -21,6 +21,7 @@ public class Rain extends BaseCommand {
         commandContext.getSource().getWorld().getLevelProperties().setRaining(true);
         chat.send("It's raining!");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

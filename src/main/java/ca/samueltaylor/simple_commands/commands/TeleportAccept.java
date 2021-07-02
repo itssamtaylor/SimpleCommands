@@ -10,7 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class TeleportAccept extends BaseCommand {
-    static {
+    public TeleportAccept() {
         command = "tpaccept";
     }
 
@@ -19,9 +19,10 @@ public class TeleportAccept extends BaseCommand {
         PlayerEntity player = commandContext.getSource().getPlayer();
         PlayerEntity requester = TeleportRequests.accept(player);
 
-        Chat.send(player, "Teleported " + requester.getName() + " to your location");
-        Chat.send(requester, "Teleported to " + player.getName());
+        Chat.send(player, "Teleported " + requester.getName().getString() + " to your location");
+        Chat.send(requester, "Teleported to " + player.getName().getString());
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

@@ -10,8 +10,8 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
 abstract public class OptionalPlayerArgument extends BaseCommand {
-    protected static String argumentName;
-    protected static EntityArgumentType argumentType = EntityArgumentType.player();
+    protected String argumentName;
+    protected EntityArgumentType argumentType = EntityArgumentType.player();
 
     @Override
     public void register(CommandDispatcher<ServerCommandSource> dispatcher) {

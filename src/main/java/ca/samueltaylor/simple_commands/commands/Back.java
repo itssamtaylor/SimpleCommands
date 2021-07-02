@@ -10,7 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class Back extends BaseCommand {
-    static {
+    public Back() {
         command = "back";
     }
 
@@ -25,6 +25,7 @@ public class Back extends BaseCommand {
             chat.send("No previous location found.");
         }
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

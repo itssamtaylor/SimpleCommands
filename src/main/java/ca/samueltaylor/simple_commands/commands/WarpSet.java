@@ -12,7 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class WarpSet extends RequiredStringArgument {
-    static {
+    public WarpSet() {
         command = "setwarp";
         argumentName = "WarpPointName";
     }
@@ -25,6 +25,7 @@ public class WarpSet extends RequiredStringArgument {
         WarpPointManager.instance().add(new WarpPoint(warpPointName, player));
         chat.send("Warp point " + warpPointName + " created!");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

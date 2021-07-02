@@ -11,7 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class WarpDel extends RequiredStringArgument {
-    static {
+    public WarpDel() {
         command = "delwarp";
         argumentName = "WarpPointName";
     }
@@ -25,6 +25,7 @@ public class WarpDel extends RequiredStringArgument {
         WarpPointManager.instance().delete(warpPointName);
         chat.send("Warp point " + warpPointName + " deleted!");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }

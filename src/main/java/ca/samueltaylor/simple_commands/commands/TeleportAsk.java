@@ -16,7 +16,7 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class TeleportAsk extends BaseCommand {
-    static {
+    public TeleportAsk() {
         command = "tpa";
     }
 
@@ -37,8 +37,8 @@ public class TeleportAsk extends BaseCommand {
 
         TeleportRequests.add(player, target);
 
-        Chat.send(player, "Sent teleport request to " + target.getName());
-        Chat.send(target, "Teleport request from " + player.getName());
+        Chat.send(player, "Sent teleport request to " + target.getName().getString());
+        Chat.send(target, "Teleport request from " + player.getName().getString());
         Chat.send(target, "/tpaccept to accept, /tpdeny to deny");
 
         return Command.SINGLE_SUCCESS;

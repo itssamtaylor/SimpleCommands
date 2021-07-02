@@ -11,7 +11,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
 public class HomeDel extends OptionalStringArgument {
-    static {
+    public HomeDel() {
         command = "delhome";
         argumentName = "HomeName";
     }
@@ -33,6 +33,7 @@ public class HomeDel extends OptionalStringArgument {
         HomePointManager.instance().delete(player, homeName);
         chat.send("Home " + homeName + " deleted!");
 
+        this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
     }
 }
