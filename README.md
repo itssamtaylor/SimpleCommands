@@ -1,7 +1,7 @@
-# TaylorCommands
-Server commands for Fabric 20w15a+
+# SimpleCommands
+Server commands for Fabric 1.17
 
-Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
+Originally a fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 
 1. [Changes](#changes)
 2. [Commands](#commands)
@@ -18,6 +18,13 @@ Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 	- [Additional Settings](#additional-settings)
 
 ## Changes
+
+#### v1.0.0-1.17
+
+- Complete rewrite of mod
+- Renamed from TaylorCommands to SimpleCommands
+- Removed `/rndtp` command
+- Allowed for each world to have their own warps and homes save file
 
 #### [v0.4.0-1.17.01](https://github.com/samueljtaylor/TaylorCommands/pull/4)
 
@@ -67,18 +74,13 @@ Fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
 #### Back to previous location
 `/back`
 
-#### Randomly teleport
-`/rndtp`
-
 #### Request to teleport
 `/tpa`
 
 #### Accept a teleport request
-`/tpyes`
 `/tpaccept`
 
 #### Deny a teleport request
-`/tpno`
 `/tpdeny`
 
 ### Warp
@@ -141,11 +143,13 @@ Each command can be toggled as enabled, disabled or opOnly in the config.
 The config is laid out as follows:
 
 ```json
-"commands": {
-  "fly": {
-    "enabled": true, 
-    "opOnly": false
-  }
+{
+	"commands": {
+		"fly": {
+			"enabled": true,
+			"opOnly": false
+		}
+	}
 }
 ```
 
@@ -156,10 +160,12 @@ Note: opOnly commands must have both `enabled` and `opOnly` set to `true`
 By default only `opOnly` commands are logged in the console, to log all commands, set the `player` value to `true`
 
 ```json
-"log": {
-  "opOnly": true,
-  "player": true,
-  "includeModName": false
+{
+	"log": {
+		"opOnly": true,
+		"player": true,
+		"includeModName": false
+	}
 }
 ```
 
@@ -174,10 +180,12 @@ Some commands have additional settings
 ##### /sethome
 
 ```json
-"sethome": {
-  "enabled": true,
-  "opOnly": false,
-  "max": 5
+{
+	"sethome": {
+		"enabled": true,
+		"opOnly": false,
+		"max": 5
+	}
 }
 ```
 
@@ -186,10 +194,12 @@ In this case `max` refers to the maximum number of homes a player can have, feel
 ##### /listall
 
 ```json
-"listall": {
-  "enabled": true,
-  "opOnly": false,
-  "defaultList": "warp"
+{
+	"listall": {
+		"enabled": true,
+		"opOnly": false,
+		"defaultList": "warp"
+	}
 }
 ```
 
