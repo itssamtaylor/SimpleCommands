@@ -2,20 +2,45 @@ package ca.samueltaylor.simple_commands.points;
 
 import ca.samueltaylor.simple_commands.SimpleCommands;
 import ca.samueltaylor.simple_commands.helpers.Logger;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.minecraft.entity.player.PlayerEntity;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
+import java.nio.file.Path;
 import java.util.HashMap;
 
-public class HomePointManager extends PointManager {
+public class HomePointManager {
 
-    protected HashMap<String, HashMap<String, HomePoint>> points = new HashMap<>();
-
+    protected HashMap<String, HashMap<String, HomePoint>> homes = new HashMap<String, HashMap<String, HomePoint>>();
+    protected File homeFile;
+    protected boolean changed = false;
+    
     public HomePointManager() {
-        super();
+        Path homeFilePath = SimpleCommands.worldPath.resolve(SimpleCommands.MOD_ID);
+
+        if(!homeFilePath.toFile().exists()) {
+            Logger.log(homeFilePath + " not found, creating...");
+            homeFilePath.toFile().mkdir();
+        }
+
+        homeFile = homeFilePath.resolve(this.getFileName()).toFile();
+
+        if(!homeFile.exists()) {
+            Logger.log(homeFile.getName() + " not found, creating...");
+            createFile();
+        }
+    }
+
+    protected void createFile() {
+        try {
+            FileWriter writer = new FileWriter(homeFile);
+            new GsonBuilder().setPrettyPrinting().create().toJson(new JsonObject(), writer);
+            writer.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
     protected HomePoint pointFromJson(String name, JsonObject json) {
@@ -27,7 +52,7 @@ public class HomePointManager extends PointManager {
     }
 
     public HashMap<String, HomePoint> getHomes(PlayerEntity player) {
-        return this.points.get(player.getUuidAsString());
+        return this.homes.get(player.getUuidAsString());
     }
 
     public String listPoints(PlayerEntity player) {
@@ -37,11 +62,10 @@ public class HomePointManager extends PointManager {
     public HomePoint getPoint(PlayerEntity player, String homeName) {
         return this.getHomes(player).get(homeName);
     }
-
-    @Override
+    
     public void load() {
         try {
-            JsonObject json = new JsonParser().parse(new FileReader(pointFile)).getAsJsonObject();
+            JsonObject json = new JsonParser().parse(new FileReader(homeFile)).getAsJsonObject();
             json.entrySet().iterator().forEachRemaining(set -> {
                 HashMap<String, HomePoint> playerHomes = new HashMap<>();
 
@@ -49,32 +73,52 @@ public class HomePointManager extends PointManager {
                     playerHomes.put(home.getKey(), this.pointFromJson(home.getKey(), home.getValue().getAsJsonObject()));
                 });
 
-                this.points.put(set.getKey(), playerHomes);
+                this.homes.put(set.getKey(), playerHomes);
             });
             this.changed = false;
-            Logger.log("Successfully loaded " + pointFile.getName());
+            Logger.log("Successfully loaded " + homeFile.getName());
         } catch (FileNotFoundException exception) {
             Logger.fatal("Could not load " + this.getFileName());
         }
     }
 
     public void add(PlayerEntity player, HomePoint homePoint) {
-        if (this.points.containsKey(player.getUuidAsString())) {
-            this.points.get(player.getUuidAsString()).put(homePoint.name, homePoint);
+        if(this.homes.containsKey(player.getUuidAsString())) {
+            this.homes.get(player.getUuidAsString()).put(homePoint.name, homePoint);
         } else {
-            HashMap<String, HomePoint> playerHomes = new HashMap<>();
+            HashMap<String, HomePoint> playerHomes = new HashMap<String, HomePoint>();
             playerHomes.put(homePoint.name, homePoint);
-            this.points.put(player.getUuidAsString(), playerHomes);
+            this.homes.put(player.getUuidAsString(), playerHomes);
         }
-        this.changed = true;
+        this.changed();
     }
 
     public void delete(PlayerEntity player, String name) {
-        this.points.get(player.getUuidAsString()).remove(name);
+        this.homes.get(player.getUuidAsString()).remove(name);
+        this.changed();
+    }
+
+    protected void changed() {
         this.changed = true;
     }
 
-    @Override
+    public void save() {
+        if(this.changed) {
+            try {
+                String data = new GsonBuilder().setPrettyPrinting().create().toJson(this.homes);
+
+                FileWriter writer = new FileWriter(homeFile);
+                writer.write(data);
+                writer.close();
+
+                this.changed = false;
+                Logger.log(homeFile.getName() + " saved successfully.");
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+    
     public String getFileName() {
         return "homes.json";
     }
