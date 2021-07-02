@@ -40,6 +40,7 @@ public class SimpleCommands implements ModInitializer {
             new Home().register(dispatcher);
             new HomeDel().register(dispatcher);
             new HomeSet().register(dispatcher);
+            new ListAll().register(dispatcher);
             new Rain().register(dispatcher);
             new Repair().register(dispatcher);
             new Spawn().register(dispatcher);
