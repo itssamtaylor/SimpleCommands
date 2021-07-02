@@ -55,7 +55,7 @@ public class HomePointManager {
         return this.homes.get(player.getUuidAsString());
     }
 
-    public String listPoints(PlayerEntity player) {
+    public String listHomes(PlayerEntity player) {
         return this.getHomes(player).keySet().toString();
     }
 
