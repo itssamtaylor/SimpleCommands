@@ -42,6 +42,10 @@ public class Teleport {
         }
     }
 
+    public Teleport(Entity player, Location location) {
+        this(player, (ServerWorld) player.world, location);
+    }
+
     public void teleport() {
         if(this.player instanceof PlayerEntity) {
             this.logCurrentLocation((PlayerEntity) this.player);
