@@ -100,7 +100,7 @@ public class HomePointManager {
     }
 
     public boolean canAddHome(PlayerEntity player, String homeName) {
-        return this.canAddHome(player) || this.getHome(player, homeName) != null;
+        return this.canAddHome(player) || this.getHomes(player).containsKey(homeName);
     }
 
     public boolean canAddHome(PlayerEntity player) {

@@ -38,6 +38,7 @@ public class SimpleCommands implements ModInitializer {
             new God().register(dispatcher);
             new Heal().register(dispatcher);
             new Home().register(dispatcher);
+            new HomeDel().register(dispatcher);
             new HomeSet().register(dispatcher);
             new Rain().register(dispatcher);
             new Repair().register(dispatcher);
@@ -45,6 +46,9 @@ public class SimpleCommands implements ModInitializer {
             new SpawnSet().register(dispatcher);
             new Suicide().register(dispatcher);
             new Sun().register(dispatcher);
+            new TeleportAccept().register(dispatcher);
+            new TeleportAsk().register(dispatcher);
+            new TeleportDeny().register(dispatcher);
             new Warp().register(dispatcher);
             new WarpDel().register(dispatcher);
             new WarpSet().register(dispatcher);

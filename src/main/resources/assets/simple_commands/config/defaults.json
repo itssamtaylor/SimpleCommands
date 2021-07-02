@@ -2,7 +2,7 @@
   "log": {
     "opOnly": true,
     "player": false,
-    "includeModName": false
+    "includeModName": true
   },
   "commands": {
     "back": {
