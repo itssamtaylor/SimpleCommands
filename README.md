@@ -22,6 +22,10 @@ Originally a fork of [Markus23/mycommands](https://github.com/Markus23/mycommand
 
 ## Changes
 
+#### v1.0.1-1.17
+
+- Fix cross dimensional travel
+
 #### v1.0.0-1.17
 
 - Complete rewrite of mod
