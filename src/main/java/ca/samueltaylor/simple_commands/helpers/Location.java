@@ -2,7 +2,9 @@ package ca.samueltaylor.simple_commands.helpers;
 
 import com.google.gson.JsonObject;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 
@@ -44,11 +46,19 @@ public class Location {
         float yaw = json.has("yaw") ? json.get("yaw").getAsFloat() : 0.0F;
         RegistryKey<World> dimension = World.OVERWORLD;
 
+        // TODO: Revise this check later to use field_25137 data from config as well
         if(json.has("dimension")) {
-            // @todo add dim check
+            JsonObject rootDimData = json.get("dimension").getAsJsonObject();
+            if (rootDimData.has("field_25138")) {
+                JsonObject fieldData = rootDimData.get("field_25138").getAsJsonObject();
+                dimension = RegistryKey.of(Registry.WORLD_KEY, new Identifier(
+                        fieldData.has("field_13353") ? fieldData.get("field_13353").getAsString() : "minecraft",
+                        fieldData.has("field_13355") ? fieldData.get("field_13355").getAsString() : "overworld"
+                ));
+            }
         }
 
-        init(x, y, z, pitch, yaw, World.OVERWORLD);
+        init(x, y, z, pitch, yaw, dimension);
     }
 
     private void init(double posX, double posY, double posZ, float pitch, float yaw, RegistryKey<World> dimension) {
