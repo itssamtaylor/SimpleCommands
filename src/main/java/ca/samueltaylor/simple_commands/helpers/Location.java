@@ -47,12 +47,15 @@ public class Location {
         RegistryKey<World> dimension = World.OVERWORLD;
 
         // TODO: Revise this check later to use field_25137 data from config as well
-        if(json.has("dimension") && json.has("field_25138")) {
-            JsonObject fieldData = json.get("field_25138").getAsJsonObject();
-            dimension = RegistryKey.of(Registry.WORLD_KEY, new Identifier(
-                    fieldData.has("field_13353") ? fieldData.get("field_13353").getAsString() : "minecraft",
-                    fieldData.has("field_13355") ? fieldData.get("field_13355").getAsString() : "overworld"
-            ));
+        if(json.has("dimension")) {
+            JsonObject rootDimData = json.get("dimension").getAsJsonObject();
+            if (rootDimData.has("field_25138")) {
+                JsonObject fieldData = rootDimData.get("field_25138").getAsJsonObject();
+                dimension = RegistryKey.of(Registry.WORLD_KEY, new Identifier(
+                        fieldData.has("field_13353") ? fieldData.get("field_13353").getAsString() : "minecraft",
+                        fieldData.has("field_13355") ? fieldData.get("field_13355").getAsString() : "overworld"
+                ));
+            }
         }
 
         init(x, y, z, pitch, yaw, dimension);
