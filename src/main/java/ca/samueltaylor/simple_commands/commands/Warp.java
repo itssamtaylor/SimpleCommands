@@ -11,6 +11,8 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
+import java.util.Objects;
+
 public class Warp extends RequiredStringArgument {
     public Warp() {
         command = "warp";
@@ -33,7 +35,7 @@ public class Warp extends RequiredStringArgument {
             return Command.SINGLE_SUCCESS;
         }
 
-        warpPoint.teleport(player, commandContext.getSource().getWorld());
+        warpPoint.teleport(player, Objects.requireNonNull(player.getServer()).getWorld(warpPoint.location.dimension));
 
         this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
