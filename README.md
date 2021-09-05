@@ -22,7 +22,7 @@ Originally a fork of [Markus23/mycommands](https://github.com/Markus23/mycommand
 
 ## Changes
 
-#### v1.0.2-1.17
+#### v1.0.3-1.17
 
 - Fix cross dimensional travel
 
