@@ -9,6 +9,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.World;
 
 import java.util.Objects;
@@ -21,12 +22,13 @@ public class Spawn extends BaseCommand {
     @Override
     public int execute(CommandContext<ServerCommandSource> commandContext) throws CommandSyntaxException {
         ServerPlayerEntity player = commandContext.getSource().getPlayer();
-        ServerWorld world = commandContext.getSource().getWorld();
-        int x = world.getLevelProperties().getSpawnX();
-        int y = world.getLevelProperties().getSpawnY();
-        int z = world.getLevelProperties().getSpawnZ();
+        RegistryKey<World> worldKey = World.OVERWORLD;
+        ServerWorld world = Objects.requireNonNull(player.getServer()).getWorld(worldKey);
+        int x = Objects.requireNonNull(world).getLevelProperties().getSpawnX();
+        int y = Objects.requireNonNull(world).getLevelProperties().getSpawnY();
+        int z = Objects.requireNonNull(world).getLevelProperties().getSpawnZ();
 
-        Teleport.teleport(player, Objects.requireNonNull(player.getServer()).getWorld(World.OVERWORLD), new Location(x, y, z, World.OVERWORLD));
+        Teleport.teleport(player, world, new Location(x, y, z, worldKey));
 
         this.logCommand(commandContext);
         return Command.SINGLE_SUCCESS;
