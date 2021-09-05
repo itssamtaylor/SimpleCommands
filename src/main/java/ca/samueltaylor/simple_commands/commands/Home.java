@@ -11,6 +11,8 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;
 
+import java.util.Objects;
+
 public class Home extends OptionalStringArgument {
     public Home() {
         command = "home";
@@ -34,7 +36,7 @@ public class Home extends OptionalStringArgument {
         Chat chat = new Chat(player);
 
         if(home != null) {
-            home.teleport(player, commandContext.getSource().getWorld());
+            home.teleport(player, Objects.requireNonNull(player.getServer()).getWorld(home.location.dimension));
             chat.send("Teleported to your home " + homeName);
 
             this.logCommand(commandContext);
