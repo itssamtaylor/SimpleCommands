@@ -48,7 +48,7 @@ public class Location {
             // @todo add dim check
         }
 
-        init(x, y, z, pitch, yaw, World.OVERWORLD);
+        init(x, y, z, pitch, yaw, dimension);
     }
 
     private void init(double posX, double posY, double posZ, float pitch, float yaw, RegistryKey<World> dimension) {
