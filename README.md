@@ -1,4 +1,7 @@
 # SimpleCommands
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 Server commands for Fabric 1.17
 
 Originally a fork of [Markus23/mycommands](https://github.com/Markus23/mycommands)
